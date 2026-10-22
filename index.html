@@ -16,11 +16,11 @@
           },
           colors: {
             aci: {
-              navy: '#025743',    /* Primary Brand Navy Green */
-              brown: '#2a1a11',   /* Secondary Brand Dark Brown */
+              navy: '#025743',    /* Primary Brand Navy Green[cite: 6] */
+              brown: '#2a1a11',   /* Secondary Brand Dark Brown[cite: 6] */
               darkBg: '#120b07',  /* Deep Dark Background */
-              orange: '#f37025',  /* Accent Orange */
-              grey: '#414042',    /* Accent Neutral Grey */
+              orange: '#f37025',  /* Accent Orange[cite: 6] */
+              grey: '#414042',    /* Accent Neutral Grey[cite: 6] */
               cardBg: '#1d120c'
             }
           }
@@ -46,30 +46,19 @@
       background: #f37025;
     }
 
-    /* SVG Pie Segment Styles */
+    /* SVG Pie Segment Clean Styles (No Shadow, Precise Highlight) */
     .pie-segment {
-      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease, filter 0.2s ease;
+      transition: fill 0.2s ease, opacity 0.2s ease;
       cursor: pointer;
-      transform-origin: 400px 400px;
     }
     .pie-segment:hover {
-      filter: brightness(1.25) drop-shadow(0 0 16px rgba(243, 112, 37, 0.75));
+      filter: brightness(1.15);
       opacity: 1 !important;
-      transform: scale(1.025);
     }
-    .pie-segment.active-segment {
-      filter: brightness(1.3) drop-shadow(0 0 22px rgba(243, 112, 37, 0.95)) !important;
+    .pie-segment.active-segment path {
       stroke: #f37025 !important;
       stroke-width: 4px !important;
-      transform: scale(1.038);
-    }
-
-    .pulse-glow {
-      animation: pulseGlow 2.5s infinite alternate ease-in-out;
-    }
-    @keyframes pulseGlow {
-      0% { filter: drop-shadow(0 0 6px rgba(243, 112, 37, 0.4)); }
-      100% { filter: drop-shadow(0 0 18px rgba(243, 112, 37, 0.85)); }
+      fill-opacity: 1 !important;
     }
 
     .no-scrollbar::-webkit-scrollbar {
@@ -79,15 +68,11 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-
-    .text-stroke-heavy {
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.95), 0 0 3px rgba(0, 0, 0, 0.9);
-    }
   </style>
 </head>
 <body class="h-full bg-aci-darkBg text-slate-100 flex flex-col font-sans overflow-x-hidden selection:bg-aci-orange selection:text-white">
 
-  <!-- Header Navigation Bar (PT ANEKA COFFEE INDUSTRY BRANDING) -->
+  <!-- Header Navigation Bar -->
   <header class="bg-aci-brown/95 border-b border-aci-grey/60 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-8 py-3 flex flex-wrap justify-between items-center gap-4 shrink-0 shadow-xl">
     <div class="flex items-center gap-3.5">
       <div class="w-11 h-11 rounded-xl bg-aci-navy border border-aci-orange/40 flex items-center justify-center text-aci-orange text-xl shadow-lg">
@@ -95,7 +80,7 @@
       </div>
       <div>
         <h1 class="text-base sm:text-xl font-black tracking-tight text-white flex items-center gap-2.5">
-          Pre-Requisite Program (PRP) <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-aci-orange/20 text-aci-orange border border-aci-orange/50">ISO 22000 / ISO 22002-1</span>
+          Pre-Requisite Program (PRP) <span class="text-xs font-bold px-2.5 py-0.5 rounded-full bg-aci-orange/20 text-aci-orange border border-aci-orange/50">ISO 22000 / ISO 22002-1[cite: 1]</span>
         </h1>
         <p class="text-xs sm:text-sm text-slate-300 font-semibold">PT Aneka Coffee Industry &bull; Interactive Food Safety Wheel Guidance</p>
       </div>
@@ -103,7 +88,6 @@
 
     <!-- Controls Bar Header -->
     <div class="flex items-center gap-3">
-      <!-- Toggle View Mode Button -->
       <div class="bg-aci-darkBg/90 p-1 rounded-xl border border-aci-grey flex items-center shadow-inner">
         <button id="btn-view-wheel" onclick="setViewMode('wheel')" class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 bg-aci-navy text-white shadow-md border border-aci-navy">
           <i class="fa-solid fa-chart-pie text-base text-aci-orange"></i> <span>Diagram Sirkular</span>
@@ -113,7 +97,6 @@
         </button>
       </div>
 
-      <!-- Quick Reset Button -->
       <button onclick="resetSelection()" class="p-2.5 text-slate-300 hover:text-aci-orange hover:bg-aci-cardBg rounded-xl border border-aci-grey transition-all" title="Reset Pilihan">
         <i class="fa-solid fa-rotate-right text-base"></i>
       </button>
@@ -128,7 +111,6 @@
       
       <!-- Toolbar Filter & Search -->
       <div class="p-3.5 sm:p-4 border-b border-aci-grey/60 bg-aci-brown/40 flex flex-col sm:flex-row gap-3 items-center justify-between shrink-0">
-        <!-- Search Bar -->
         <div class="relative w-full sm:w-96">
           <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
           <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Cari kata kunci (CIP, Hama, Alergen, Kopi, dsb)..." 
@@ -138,7 +120,6 @@
           </button>
         </div>
 
-        <!-- Filter Dropdown -->
         <div class="w-full sm:w-auto flex items-center gap-2">
           <label class="text-xs sm:text-sm font-bold text-slate-300 whitespace-nowrap hidden md:inline"><i class="fa-solid fa-filter mr-1.5 text-aci-orange"></i>Filter PRP:</label>
           <select id="category-filter" onchange="handleFilterChange()" class="w-full sm:w-72 bg-aci-cardBg/90 text-xs sm:text-sm text-slate-100 font-semibold border border-aci-grey rounded-xl px-3.5 py-2.5 focus:outline-none focus:border-aci-orange transition-all">
@@ -148,30 +129,21 @@
       </div>
 
       <!-- Quick Category Pills -->
-      <div class="px-4 py-2.5 border-b border-aci-grey/40 bg-aci-brown/20 overflow-x-auto whitespace-nowrap flex gap-2 no-scrollbar shrink-0" id="category-pills">
-        <!-- Generated dynamically -->
-      </div>
+      <div class="px-4 py-2.5 border-b border-aci-grey/40 bg-aci-brown/20 overflow-x-auto whitespace-nowrap flex gap-2 no-scrollbar shrink-0" id="category-pills"></div>
 
-      <!-- VIEW 1: ENLARGED CIRCULAR DIAGRAM VIEW -->
+      <!-- VIEW 1: ENLARGED CIRCULAR DIAGRAM VIEW (Smaller Center Circle, Much Larger Clean Text) -->
       <div id="view-wheel-container" class="flex-1 relative flex items-center justify-center p-2 sm:p-4 overflow-hidden min-h-[500px]">
-        
-        <!-- Instructions Badge -->
         <div class="absolute top-4 left-4 z-10 pointer-events-none bg-aci-brown/90 backdrop-blur-md border border-aci-grey/80 rounded-xl px-3.5 py-2 text-xs sm:text-sm font-bold text-slate-200 flex items-center gap-2.5 shadow-xl">
           <span class="w-2.5 h-2.5 rounded-full bg-aci-orange animate-ping"></span>
           <span>Klik sektor diagram untuk membuka detail &amp; implikasi di panel kanan</span>
         </div>
 
-        <!-- SVG Wrapper with Expanded Dimensions (800x800 CANVAS) -->
-        <div id="svg-wrapper" class="w-full h-full max-w-[820px] max-h-[820px] flex items-center justify-center p-2">
-          <!-- Interactive High-Res SVG Donut Chart -->
-        </div>
+        <div id="svg-wrapper" class="w-full h-full max-w-[850px] max-h-[850px] flex items-center justify-center p-2"></div>
       </div>
 
-      <!-- VIEW 2: LIST / CARD VIEW (Hidden by Default) -->
+      <!-- VIEW 2: LIST / CARD VIEW -->
       <div id="view-card-container" class="hidden flex-1 overflow-y-auto p-4 sm:p-6 space-y-4">
-        <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Generated dynamically -->
-        </div>
+        <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
       </div>
 
     </section>
@@ -187,7 +159,7 @@
               PRP Element
             </span>
             <span id="detail-code-badge" class="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-aci-darkBg text-slate-300 border border-aci-grey/60">
-              ISO 22002-1
+              ISO 22002-1[cite: 1]
             </span>
           </div>
           <h2 id="detail-title-en" class="text-xl sm:text-2xl font-black text-aci-orange tracking-tight leading-tight">
@@ -205,7 +177,7 @@
       <!-- Panel Body with INDEPENDENT SCROLLBAR -->
       <div id="detail-body" class="flex-1 overflow-y-auto p-5 sm:p-6 space-y-6 text-base leading-relaxed">
         
-        <!-- DEFAULT STATE: Overview Dashboard -->
+        <!-- DEFAULT STATE -->
         <div id="detail-default-msg" class="py-4 space-y-6">
           <div class="p-5 rounded-2xl bg-gradient-to-br from-aci-navy/40 via-aci-brown to-aci-darkBg border border-aci-orange/40 text-center space-y-3.5 shadow-lg">
             <div class="w-14 h-14 rounded-2xl bg-aci-navy border border-aci-orange/50 flex items-center justify-center text-aci-orange text-2xl mx-auto shadow-inner">
@@ -223,22 +195,17 @@
             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
               <i class="fa-solid fa-list-check text-aci-orange text-sm"></i> Ringkasan 14 Aspek PRP
             </h4>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm" id="default-aspects-list">
-              <!-- Dynamically populated summary list -->
-            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm" id="default-aspects-list"></div>
           </div>
         </div>
 
         <!-- ACTIVE SELECTED CATEGORY CONTENT -->
         <div id="detail-selected-content" class="hidden space-y-6">
-          
-          <!-- Aspect Category Description Box -->
           <div class="p-4 sm:p-5 rounded-2xl bg-aci-darkBg/90 border border-aci-grey text-sm sm:text-base text-slate-200 leading-relaxed space-y-2 shadow-inner">
             <span class="text-xs uppercase font-black text-aci-orange tracking-wider block">Deskripsi Aspek Utama:</span>
             <p id="detail-description" class="font-medium text-slate-300 leading-relaxed"></p>
           </div>
 
-          <!-- Sub-requirements Accordion Header -->
           <div class="space-y-3.5">
             <div class="flex items-center justify-between">
               <h3 class="text-sm uppercase font-black text-aci-orange tracking-wider flex items-center gap-2">
@@ -247,21 +214,17 @@
               <span class="text-xs text-slate-400 font-semibold">Klik card untuk melebarkan/menutup</span>
             </div>
 
-            <!-- Sub-requirements Accordion List -->
-            <div id="subreq-accordion-container" class="space-y-4">
-              <!-- Accordion Items Inserted Dynamically -->
-            </div>
+            <div id="subreq-accordion-container" class="space-y-4"></div>
           </div>
-
         </div>
 
       </div>
 
-      <!-- Panel Fixed Footer (BRAND FOOTER) -->
+      <!-- Panel Fixed Footer -->
       <div class="p-4 border-t border-aci-grey/80 bg-aci-brown flex items-center justify-between text-xs sm:text-sm text-slate-300 shrink-0">
         <span class="font-extrabold text-white">PT Aneka Coffee Industry</span>
         <span class="flex items-center gap-2 font-bold text-emerald-400 text-xs sm:text-sm">
-          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> Standard FSMS 2025/2026
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span> Standard FSMS 2025/2026[cite: 1]
         </span>
       </div>
 
@@ -270,14 +233,13 @@
 
   <!-- JavaScript Application Logic -->
   <script>
-    // --- PRP DATA STRUCTURE (14 ASPECTS WITH SHORT ENGLISH TITLES & ACI PALETTE COLORS) ---
     const prpData = [
       {
         id: "cat-1",
         code: "PRP-01",
         titleEn: "Building & Facility Limits",
         titleId: "Konstruksi & Tata Letak Bangunan",
-        color: "#025743", // Primary Navy Green
+        color: "#025743",
         icon: "fa-building",
         description: "Regulasi struktur luar, batas wilayah pabrik, serta sistem drainase untuk mencegah kontaminasi ekstrinsik dari luar lingkungan pabrik.",
         requirements: [
@@ -306,7 +268,7 @@
         code: "PRP-02",
         titleEn: "Layout & Zoning",
         titleId: "Desain & Fasilitas Ruang Kerja",
-        color: "#5c3317", // Rich Roasted Coffee
+        color: "#5c3317",
         icon: "fa-draw-polygon",
         description: "Perancangan zona interior, tata letak alur proses, dan fasilitas pendukung untuk menjaga sanitasi produk kopi.",
         requirements: [
@@ -341,7 +303,7 @@
         code: "PRP-03",
         titleEn: "Utilities Control",
         titleId: "Pengendalian Utilitas Pabrik",
-        color: "#b45309", // Warm Amber
+        color: "#b45309",
         icon: "fa-faucet-drip",
         description: "Pengawasan terhadap media utilitas kontak langsung maupun tidak langsung seperti air, uap culinary, udara bertekanan, dan pencahayaan.",
         requirements: [
@@ -370,7 +332,7 @@
         code: "PRP-04",
         titleEn: "Water & Air Systems",
         titleId: "Sistem Pasokan Udara & Air",
-        color: "#0284c7", // Sky Blue
+        color: "#0284c7",
         icon: "fa-wind",
         description: "Spesifikasi filtrasi udara bertekanan, arah aliran ventilasi, dan pengujian kebersihan sistem perpipaan air.",
         requirements: [
@@ -393,7 +355,7 @@
         code: "PRP-05",
         titleEn: "Pest Control",
         titleId: "Pengendalian Hama",
-        color: "#047857", // Emerald Dark
+        color: "#047857",
         icon: "fa-bug",
         description: "Pencegahan, pemantauan, dan pemusnahan vektor hama (tikus, serangga, burung, kutu) di seluruh area fasilitas.",
         requirements: [
@@ -422,7 +384,7 @@
         code: "PRP-06",
         titleEn: "Waste Management",
         titleId: "Pengelolaan Limbah & Daur Ulang",
-        color: "#414042", // ACI Accent Grey
+        color: "#414042",
         icon: "fa-trash-can",
         description: "Sistem identifikasi, penampungan, dan pembuangan limbah sisa pengolahan kopi serta tata kelola palet.",
         requirements: [
@@ -445,7 +407,7 @@
         code: "PRP-07",
         titleEn: "Equipment Suitability",
         titleId: "Kesesuaian Peralatan & Pemeliharaan",
-        color: "#d97706", // ACI Gold / Amber
+        color: "#d97706",
         icon: "fa-gears",
         description: "Desain mesin yang higienis, mudah dibersihkan, tahan korosi, dan pemeliharaan preventif berstandar food grade.",
         requirements: [
@@ -468,7 +430,7 @@
         code: "PRP-08",
         titleEn: "Supplier Management",
         titleId: "Manajemen Pembelian & Bahan Datang",
-        color: "#1d4ed8", // Deep Blue
+        color: "#1d4ed8",
         icon: "fa-truck-ramp-box",
         description: "Jaminan keamanan rantai pasok mulai dari penyeleksian vendor hingga verifikasi material kopi curah saat penerimaan.",
         requirements: [
@@ -497,7 +459,7 @@
         code: "PRP-09",
         titleEn: "Warehouse & Transport",
         titleId: "Penyimpanan, Pergudangan, & Transportasi",
-        color: "#0369a1", // Slate Blue
+        color: "#0369a1",
         icon: "fa-warehouse",
         description: "Praktik tata kelola gudang, rotasi stok berbasis FIFO/FEFO, dan prosedur pemeriksaan kelayakan kontainer pengiriman.",
         requirements: [
@@ -520,7 +482,7 @@
         code: "PRP-10",
         titleEn: "Contamination Control",
         titleId: "Tindakan Pencegahan Kontaminasi Spesifik",
-        color: "#dc2626", // Danger Red
+        color: "#dc2626",
         icon: "fa-shield-virus",
         description: "Pengendalian spesifik terhadap bahaya kontaminasi mikrobiologi, kontaminasi silang alergen, logam/kaca, dan kimia.",
         requirements: [
@@ -555,7 +517,7 @@
         code: "PRP-11",
         titleEn: "Cleaning & Sanitation",
         titleId: "Pembersihan & Disinfeksi",
-        color: "#0891b2", // Cyan Clean
+        color: "#0891b2",
         icon: "fa-sparkles",
         description: "Prosedur sanitasi rutin, pemantauan efektivitas pembersihan, dan pengoperasian otomatis Cleaning in Place (CIP).",
         requirements: [
@@ -578,7 +540,7 @@
         code: "PRP-12",
         titleEn: "Personnel Hygiene",
         titleId: "Kebersihan & Kesehatan Personel",
-        color: "#059669", // Emerald Hygiene
+        color: "#059669",
         icon: "fa-user-nurse",
         description: "Fasilitas kebersihan diri, standar APD/seragam kerja, laporan status kesehatan, dan aturan perilaku karyawan.",
         requirements: [
@@ -607,7 +569,7 @@
         code: "PRP-13",
         titleEn: "Food Defence & Fraud",
         titleId: "Keamanan Tambahan (Defense & Fraud)",
-        color: "#9f1239", // Security Dark Rose
+        color: "#9f1239",
         icon: "fa-shield-cat",
         description: "Mitigasi ancaman sabotase/kontaminasi disengaja (Food Defense) dan penilaian kerentanan keaslian kopi (Food Fraud).",
         requirements: [
@@ -630,7 +592,7 @@
         code: "PRP-14",
         titleEn: "Rework Management",
         titleId: "Pengelolaan Sisa Produk / Rework",
-        color: "#4f46e5", // Indigo Rework
+        color: "#4f46e5",
         icon: "fa-rotate",
         description: "Tata cara identifikasi, isolasi, dan penetapan persentase maksimal pencampuran sisa produksi (rework) ke batch baru.",
         requirements: [
@@ -650,14 +612,12 @@
       }
     ];
 
-    // App Global State
     let currentActiveCatId = null;
     let currentFilter = "ALL";
     let searchQuery = "";
     let viewMode = "wheel";
     let openAccordionIndex = 0;
 
-    // DOM Ready Initialization
     document.addEventListener("DOMContentLoaded", () => {
       initCategoryFilterDropdown();
       initCategoryPills();
@@ -782,28 +742,28 @@
       resetDetailToDefault();
     }
 
-    // --- RENDER HIGH-RESOLUTION EXPANDED SVG DONUT CHART (800px CANVAS) ---
+    // --- RENDER HIGH-RESOLUTION EXPANDED SVG DONUT CHART (Smaller Center rInner=115, Larger Text font-size=18, No Shadow) ---
     function renderDonutSVG() {
       const wrapper = document.getElementById("svg-wrapper");
       
       const size = 800;
       const center = size / 2; // 400px
-      const rInner = 175;
-      const rOuter = 370;
+      const rInner = 115; // Much smaller center circle for more legroom
+      const rOuter = 375;
 
       const totalAspects = prpData.length;
       const anglePerAspect = (2 * Math.PI) / totalAspects;
 
-      let svgHtml = `<svg viewBox="0 0 ${size} ${size}" class="w-full h-full drop-shadow-2xl font-sans" xmlns="http://www.w3.org/2000/svg">`;
+      let svgHtml = `<svg viewBox="0 0 ${size} ${size}" class="w-full h-full font-sans" xmlns="http://www.w3.org/2000/svg">`;
 
-      // Central Core Circle (PT ANEKA COFFEE INDUSTRY BRANDING)
+      // Central Core Circle (PT ANEKA COFFEE INDUSTRY)
       svgHtml += `
         <g class="cursor-pointer" onclick="resetDetailToDefault()">
-          <circle cx="${center}" cy="${center}" r="${rInner - 6}" fill="#120b07" stroke="#f37025" stroke-width="4" class="pulse-glow" />
-          <circle cx="${center}" cy="${center}" r="${rInner - 18}" fill="#025743" opacity="0.95"/>
-          <text x="${center}" y="${center - 16}" text-anchor="middle" fill="#f37025" font-weight="900" font-size="24" letter-spacing="1">PRP</text>
-          <text x="${center}" y="${center + 10}" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="16" letter-spacing="0.5">FOOD SAFETY</text>
-          <text x="${center}" y="${center + 32}" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="700">ISO 22000 / 22002-1</text>
+          <circle cx="${center}" cy="${center}" r="${rInner - 4}" fill="#120b07" stroke="#f37025" stroke-width="3" />
+          <circle cx="${center}" cy="${center}" r="${rInner - 12}" fill="#025743" opacity="0.95"/>
+          <text x="${center}" y="${center - 12}" text-anchor="middle" fill="#f37025" font-weight="900" font-size="20" letter-spacing="1">PRP</text>
+          <text x="${center}" y="${center + 8}" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="13" letter-spacing="0.5">FOOD SAFETY</text>
+          <text x="${center}" y="${center + 26}" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="700">ISO 22000 / 22002-1[cite: 1]</text>
         </g>
       `;
 
@@ -828,13 +788,13 @@
         svgHtml += `
           <g class="pie-segment ${isActive ? 'active-segment' : ''}" 
              onclick="selectCategory('${cat.id}')"
-             style="opacity: ${isDimmed ? 0.2 : (isActive ? 1 : 0.94)};">
-            <path d="${pathD}" fill="${cat.color}" stroke="#120b07" stroke-width="3.5">
+             style="opacity: ${isDimmed ? 0.2 : 1};">
+            <path d="${pathD}" fill="${cat.color}" stroke="#120b07" stroke-width="2.5">
               <title>${cat.titleEn} - ${cat.titleId}</title>
             </path>
         `;
 
-        // Radial Placement Coordinates for ENLARGED EXTRA BOLD ENGLISH TEXT
+        // Radial Placement Coordinates for LARGER CLEAN TEXT (No Shadow)
         const midAngle = startAngle + (anglePerAspect / 2);
         const labelR = (rInner + rOuter) / 2;
         const labelX = center + labelR * Math.cos(midAngle);
@@ -849,15 +809,14 @@
         svgHtml += `
             <text x="${labelX}" y="${labelY}" 
                   fill="#ffffff" 
-                  font-size="15" 
+                  font-size="18" 
                   font-weight="900" 
-                  letter-spacing="0.4"
+                  letter-spacing="0.3"
                   text-anchor="middle" 
                   dominant-baseline="central"
                   transform="rotate(${textRotation}, ${labelX}, ${labelY})"
                   pointer-events="none"
-                  class="text-stroke-heavy"
-                  opacity="${isDimmed ? 0.35 : 1}">
+                  opacity="${isDimmed ? 0.3 : 1}">
               ${cat.titleEn}
             </text>
           </g>
@@ -980,7 +939,6 @@
         accordion.className = `rounded-2xl border transition-all duration-200 overflow-hidden ${isOpen ? 'bg-aci-darkBg border-aci-orange shadow-xl' : 'bg-aci-darkBg/60 border-aci-grey/80 hover:border-slate-500'}`;
 
         accordion.innerHTML = `
-          <!-- Accordion Header -->
           <button onclick="toggleAccordion(${idx})" class="w-full p-4 text-left flex items-center justify-between gap-3 focus:outline-none">
             <div class="flex items-center gap-3 min-w-0">
               <span class="w-7 h-7 rounded-lg bg-aci-navy border border-aci-orange/40 text-aci-orange font-mono font-black text-xs sm:text-sm flex items-center justify-center shrink-0">
@@ -991,19 +949,16 @@
             <i class="fa-solid ${isOpen ? 'fa-chevron-up text-aci-orange' : 'fa-chevron-down text-slate-400'} text-sm shrink-0 transition-transform"></i>
           </button>
 
-          <!-- Accordion Collapsible Body -->
           <div class="${isOpen ? 'block' : 'hidden'} px-4 pb-5 space-y-4 pt-2 border-t border-aci-grey/80">
-            <!-- Official Requirement Description -->
             <div class="space-y-1.5">
               <span class="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                <i class="fa-solid fa-file-lines text-aci-orange"></i> Deskripsi Baku Standard ISO
+                <i class="fa-solid fa-file-lines text-aci-orange"></i> Deskripsi Baku Standard ISO[cite: 1]
               </span>
               <p class="text-sm sm:text-base text-slate-200 leading-relaxed pl-3.5 border-l-2 border-aci-orange/70 font-medium">
                 ${req.description}
               </p>
             </div>
 
-            <!-- Practical Coffee Factory Implication -->
             <div class="p-4 rounded-xl bg-aci-navy/30 border border-aci-orange/40 text-slate-100 space-y-1.5 shadow-sm">
               <span class="text-xs font-black uppercase tracking-wider text-aci-orange flex items-center gap-2">
                 <i class="fa-solid fa-mug-hot text-aci-orange"></i> Contoh Implikasi Nyata Pabrik Kopi
@@ -1040,7 +995,7 @@
       document.getElementById("detail-selected-content").classList.add("hidden");
 
       document.getElementById("detail-category-badge").textContent = "PRP ELEMENT";
-      document.getElementById("detail-code-badge").textContent = "ISO 22002-1";
+      document.getElementById("detail-code-badge").textContent = "ISO 22002-1[cite: 1]";
       document.getElementById("detail-title-en").textContent = "PRP - Food Safety System";
       document.getElementById("detail-title-id").textContent = "Pilih sektor pada diagram untuk melihat detail";
     }
