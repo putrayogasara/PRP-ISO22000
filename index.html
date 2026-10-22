@@ -521,4 +521,529 @@
         titleEn: "Contamination Control",
         titleId: "Tindakan Pencegahan Kontaminasi Spesifik",
         color: "#dc2626", // Danger Red
-        icon: "fa-shield-virus
+        icon: "fa-shield-virus",
+        description: "Pengendalian spesifik terhadap bahaya kontaminasi mikrobiologi, kontaminasi silang alergen, logam/kaca, dan kimia.",
+        requirements: [
+          {
+            code: "10.1",
+            title: "Kontaminasi Mikrobiologi & Zoning",
+            description: "Fasilitas pemisah (zoning plan), ruang jeda/ganti baju, dan aliran lalu lintas orang/alat.",
+            implication: "Adanya ruang perantara (airlock room) lengkap dengan pembersih sepatu automatik saat staf berpindah dari zona luar ke area steril pemrosesan ekstraksi kopi."
+          },
+          {
+            code: "10.2",
+            title: "Pengendalian Alergen",
+            description: "Penanganan kontaminasi silang alergen (cross-contact) pada pembersihan lini/pergantian produk (change-over) dan kontrol penggunaan rework bermateri alergen. Pelabelan alergen pada kemasan.",
+            implication: "Jika pabrik memproduksi varian 3-in-1 yang mengandung susu/krimer (alergen), lini produksi dipisah atau dilakukan pembersihan total yang tervalidasi alergen swab kit sebelum memproduksi kopi murni."
+          },
+          {
+            code: "10.3",
+            title: "Kontaminasi Fisik & Bahan Pecah",
+            description: "Penggunaan saringan (sieves), magnet (magnet traps), atau detektor logam (metal detectors/X-Ray). Pengendalian bahan rapuh/pecah (glass & brittle plastic policy) dan prosedur jika terjadi pecah kaca/plastik.",
+            implication: "Pemasangan Magnet Trap pada pipa penyaluran kopi bubuk untuk menangkap gram besi, diikuti Metal Detector (Fe, Non-Fe, SS) sebelum karton dikemas. Penerapan kaca film anti-pecah pada jendela pabrik."
+          },
+          {
+            code: "10.4",
+            title: "Kontaminasi Kimiawi",
+            description: "Pelabelan, penggunaan oleh personel kompeten, dan penyimpanan terpisah untuk pestisida serta bahan pembersih.",
+            implication: "Bahan pembersih asam/basa (CIP chemical) diberi label bahaya yang jelas, terkunci di ruang B3, dan hanya diukur oleh petugas yang terlatih memakai APD lengkap."
+          }
+        ]
+      },
+      {
+        id: "cat-11",
+        code: "PRP-11",
+        titleEn: "Cleaning & Sanitation",
+        titleId: "Pembersihan & Disinfeksi",
+        color: "#0891b2", // Cyan Clean
+        icon: "fa-sparkles",
+        description: "Prosedur sanitasi rutin, pemantauan efektivitas pembersihan, dan pengoperasian otomatis Cleaning in Place (CIP).",
+        requirements: [
+          {
+            code: "11.1",
+            title: "Pembersihan & Disinfeksi",
+            description: "Jadwal pembersihan, metode verifikasi, dan kebersihan alat pembersih. Pemeriksaan pasca-pembersihan (post-clean inspection) dan pra-start mesin (pre-start-up inspection).",
+            implication: "Master Cleaning Schedule untuk mesin pengering kopi (spray dryer); verifikasi kebersihan menggunakan tes swab ATP sebelum dilanjutkan proses penggilingan batch berikutnya."
+          },
+          {
+            code: "11.2",
+            title: "Sistem Cleaning in Place (CIP)",
+            description: "Pemisahan jalur CIP dari jalur produk aktif serta pemantauan konsentrasi, suhu, waktu kontak, dan tipe bahan kimia.",
+            implication: "Sistem CIP otomatis pada pipa sirkulasi kopi cair matang: memantau suhu alir sanitasi 80°C, konsentrasi soda kaustik 1.5-2.0%, dan merekam log waktu pencucian otomatis."
+          }
+        ]
+      },
+      {
+        id: "cat-12",
+        code: "PRP-12",
+        titleEn: "Personnel Hygiene",
+        titleId: "Kebersihan & Kesehatan Personel",
+        color: "#059669", // Emerald Hygiene
+        icon: "fa-user-nurse",
+        description: "Fasilitas kebersihan diri, standar APD/seragam kerja, laporan status kesehatan, dan aturan perilaku karyawan.",
+        requirements: [
+          {
+            code: "12.1",
+            title: "Fasilitas Kebersihan & Toilet",
+            description: "Ketersediaan wastafel cuci tangan memadai, air hangat/sabun/disinfektan, dan toilet terpisah dari jalur produksi.",
+            implication: "Fasilitas cuci tangan dengan sensor otomatis (non-hand operated), sabun cair tanpa bau (unscented soap), pengering tangan angin/tisu steril, dan toilet tidak membuka langsung ke area proses."
+          },
+          {
+            code: "12.2",
+            title: "Pakaian Kerja & APD",
+            description: "APD bersih, penutup rambut/jenggot penuh (hairnet/beard cover), serta larangan membawa pakaian kerja keluar area higienis.",
+            implication: "Pekerja area paking saset kopi wajib memakai seragam tanpa kantong di atas pinggang, hairnet menutup telinga, serta penutup jenggot untuk operator pria."
+          },
+          {
+            code: "12.3",
+            title: "Status Kesehatan & Perilaku",
+            description: "Kewajiban melaporkan penyakit menular/gejala pencernaan, penanganan luka terbuka, dan aturan dilarang memakai perhiasan.",
+            implication: "Pekerja yang mengalami luka kecil di tangan wajib melapor, menutup luka dengan plester berwarna terang (berdeteksi logam / blue metal detectable plaster), dan memakai sarung tangan berlapis."
+          }
+        ]
+      },
+      {
+        id: "cat-13",
+        code: "PRP-13",
+        titleEn: "Food Defence & Fraud",
+        titleId: "Keamanan Tambahan (Defense & Fraud)",
+        color: "#9f1239", // Security Dark Rose
+        icon: "fa-shield-cat",
+        description: "Mitigasi ancaman sabotase/kontaminasi disengaja (Food Defense) dan penilaian kerentanan keaslian kopi (Food Fraud).",
+        requirements: [
+          {
+            code: "13.1",
+            title: "Food Defense Assessment",
+            description: "Penilaian ancaman (threat assessment), kontrol pintu masuk, pembatasan akses tamu, dan penguncian tangki/ruang penyimpanan.",
+            implication: "Pemasangan kamera CCTV 24/7 di area kritikal seperti Silo Kopi Curah dan Tangki Ekstraksi, serta penggunaan kartu akses elektronik (access card) untuk masuk ke area pemrosesan utama."
+          },
+          {
+            code: "13.2",
+            title: "Food Fraud Vulnerability",
+            description: "Penilaian kerentanan (vulnerability assessment), verifikasi keaslian spesifikasi bahan baku, dan pengawasan jalur rantai pasok.",
+            implication: "Pengujian spektroskopi/laboratorium berkala untuk memverifikasi keaslian varietas Kopi Arabika dari risiko pencampuran tersembunyi dengan Kopi Robusta murah atau bahan pengisi non-kopi."
+          }
+        ]
+      },
+      {
+        id: "cat-14",
+        code: "PRP-14",
+        titleEn: "Rework Management",
+        titleId: "Pengelolaan Sisa Produk / Rework",
+        color: "#4f46e5", // Indigo Rework
+        icon: "fa-rotate",
+        description: "Tata cara identifikasi, isolasi, dan penetapan persentase maksimal pencampuran sisa produksi (rework) ke batch baru.",
+        requirements: [
+          {
+            code: "14.1",
+            title: "Identifikasi & Keterunutan Rework",
+            description: "Pelabelan jelas tanggal, shift, jenis produk rework, serta penyimpanan terisolasi dari kontaminasi.",
+            implication: "Wadah penampung bubuk kopi afkir kemasan diberi label warna merah terang mencantumkan Batch Origin, Tanggal, dan Shift, serta disimpan di area khusus Rework."
+          },
+          {
+            code: "14.2",
+            title: "Aturan Penggunaan Rework",
+            description: "Penentuan batasan persentase penambahan rework ke dalam batch baru dan prosedur pelepasan kemasan dari produk rework tanpa mengontaminasi.",
+            implication: "Prosedur SOP menetapkan maksimal 5% bubuk kopi rework yang boleh dimasukkan kembali ke dalam formula batch baru kopi instan, dengan verifikasi kelayakan organoleptik oleh QC."
+          }
+        ]
+      }
+    ];
+
+    // App Global State
+    let currentActiveCatId = null;
+    let currentFilter = "ALL";
+    let searchQuery = "";
+    let viewMode = "wheel";
+    let openAccordionIndex = 0;
+
+    // DOM Ready Initialization
+    document.addEventListener("DOMContentLoaded", () => {
+      initCategoryFilterDropdown();
+      initCategoryPills();
+      renderDefaultOverviewList();
+      renderDonutSVG();
+      renderCardsGrid();
+    });
+
+    function initCategoryFilterDropdown() {
+      const select = document.getElementById("category-filter");
+      prpData.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat.id;
+        opt.textContent = `${cat.titleEn} (${cat.titleId})`;
+        select.appendChild(opt);
+      });
+    }
+
+    function initCategoryPills() {
+      const container = document.getElementById("category-pills");
+      let html = `<button onclick="setCategoryFilter('ALL')" id="pill-ALL" class="pill-item px-3.5 py-1.5 rounded-full text-xs font-black border transition-all duration-200 bg-aci-orange text-white border-aci-orange shadow-md">
+                    Semua Aspek
+                  </button>`;
+      
+      prpData.forEach(cat => {
+        html += `<button onclick="setCategoryFilter('${cat.id}')" id="pill-${cat.id}" class="pill-item px-3.5 py-1.5 rounded-full text-xs font-bold border border-aci-grey bg-aci-darkBg/80 text-slate-300 hover:text-white hover:border-aci-orange transition-all duration-200 whitespace-nowrap flex items-center gap-1.5">
+                  <i class="fa-solid ${cat.icon} text-xs text-aci-orange"></i> ${cat.titleEn}
+                </button>`;
+      });
+      container.innerHTML = html;
+    }
+
+    function renderDefaultOverviewList() {
+      const container = document.getElementById("default-aspects-list");
+      let html = "";
+      prpData.forEach(cat => {
+        html += `
+          <div onclick="selectCategory('${cat.id}')" class="p-3 rounded-xl bg-aci-darkBg/90 border border-aci-grey hover:border-aci-orange cursor-pointer transition flex items-center gap-2.5 group shadow-sm">
+            <div class="w-7 h-7 rounded-lg flex items-center justify-center text-white text-xs font-bold shrink-0" style="background-color: ${cat.color}">
+              <i class="fa-solid ${cat.icon}"></i>
+            </div>
+            <div class="overflow-hidden min-w-0">
+              <span class="font-extrabold text-slate-200 group-hover:text-aci-orange transition block truncate text-xs sm:text-sm">${cat.titleEn}</span>
+              <span class="text-xs text-slate-400 block truncate font-semibold">${cat.requirements.length} Sub-reqs</span>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function setViewMode(mode) {
+      viewMode = mode;
+      const wheelContainer = document.getElementById("view-wheel-container");
+      const cardContainer = document.getElementById("view-card-container");
+      const btnWheel = document.getElementById("btn-view-wheel");
+      const btnCard = document.getElementById("btn-view-card");
+
+      if (mode === "wheel") {
+        wheelContainer.classList.remove("hidden");
+        cardContainer.classList.add("hidden");
+        btnWheel.className = "px-3.5 py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 bg-aci-navy text-white shadow-md border border-aci-navy";
+        btnCard.className = "px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold text-slate-300 hover:text-white transition-all duration-200 flex items-center gap-2";
+      } else {
+        wheelContainer.classList.add("hidden");
+        cardContainer.classList.remove("hidden");
+        btnCard.className = "px-3.5 py-2 rounded-lg text-xs sm:text-sm font-extrabold transition-all duration-200 flex items-center gap-2 bg-aci-navy text-white shadow-md border border-aci-navy";
+        btnWheel.className = "px-3.5 py-2 rounded-lg text-xs sm:text-sm font-bold text-slate-300 hover:text-white transition-all duration-200 flex items-center gap-2";
+      }
+    }
+
+    function handleFilterChange() {
+      const val = document.getElementById("category-filter").value;
+      setCategoryFilter(val, false);
+    }
+
+    function setCategoryFilter(catId, updateDropdown = true) {
+      currentFilter = catId;
+      if (updateDropdown) {
+        document.getElementById("category-filter").value = catId;
+      }
+
+      document.querySelectorAll(".pill-item").forEach(p => {
+        p.className = "pill-item px-3.5 py-1.5 rounded-full text-xs font-bold border border-aci-grey bg-aci-darkBg/80 text-slate-300 hover:text-white hover:border-aci-orange transition-all duration-200 whitespace-nowrap flex items-center gap-1.5";
+      });
+
+      const activePill = document.getElementById(`pill-${catId}`);
+      if (activePill) {
+        activePill.className = "pill-item px-3.5 py-1.5 rounded-full text-xs font-black border transition-all duration-200 bg-aci-orange text-white border-aci-orange shadow-md whitespace-nowrap flex items-center gap-1.5";
+        activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+
+      renderDonutSVG();
+      renderCardsGrid();
+
+      if (catId !== "ALL") {
+        selectCategory(catId);
+      }
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById("search-input").value.toLowerCase().trim();
+      const clearBtn = document.getElementById("clear-search");
+      if (searchQuery.length > 0) {
+        clearBtn.classList.remove("hidden");
+      } else {
+        clearBtn.classList.add("hidden");
+      }
+
+      renderDonutSVG();
+      renderCardsGrid();
+    }
+
+    function clearSearch() {
+      document.getElementById("search-input").value = "";
+      handleSearch();
+    }
+
+    function resetSelection() {
+      clearSearch();
+      setCategoryFilter("ALL");
+      resetDetailToDefault();
+    }
+
+    // --- RENDER HIGH-RESOLUTION EXPANDED SVG DONUT CHART (800px CANVAS) ---
+    function renderDonutSVG() {
+      const wrapper = document.getElementById("svg-wrapper");
+      
+      const size = 800;
+      const center = size / 2; // 400px
+      const rInner = 175;
+      const rOuter = 370;
+
+      const totalAspects = prpData.length;
+      const anglePerAspect = (2 * Math.PI) / totalAspects;
+
+      let svgHtml = `<svg viewBox="0 0 ${size} ${size}" class="w-full h-full drop-shadow-2xl font-sans" xmlns="http://www.w3.org/2000/svg">`;
+
+      // Central Core Circle (PT ANEKA COFFEE INDUSTRY BRANDING)
+      svgHtml += `
+        <g class="cursor-pointer" onclick="resetDetailToDefault()">
+          <circle cx="${center}" cy="${center}" r="${rInner - 6}" fill="#120b07" stroke="#f37025" stroke-width="4" class="pulse-glow" />
+          <circle cx="${center}" cy="${center}" r="${rInner - 18}" fill="#025743" opacity="0.95"/>
+          <text x="${center}" y="${center - 16}" text-anchor="middle" fill="#f37025" font-weight="900" font-size="24" letter-spacing="1">PRP</text>
+          <text x="${center}" y="${center + 10}" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="16" letter-spacing="0.5">FOOD SAFETY</text>
+          <text x="${center}" y="${center + 32}" text-anchor="middle" fill="#e2e8f0" font-size="12" font-weight="700">ISO 22000 / 22002-1</text>
+        </g>
+      `;
+
+      let currentAngle = -Math.PI / 2;
+
+      prpData.forEach((cat, idx) => {
+        const startAngle = currentAngle;
+        const endAngle = startAngle + anglePerAspect;
+
+        const matchesFilter = (currentFilter === "ALL" || currentFilter === cat.id);
+        const matchesSearch = searchQuery === "" || 
+                              cat.titleEn.toLowerCase().includes(searchQuery) ||
+                              cat.titleId.toLowerCase().includes(searchQuery) ||
+                              cat.description.toLowerCase().includes(searchQuery) ||
+                              cat.requirements.some(r => r.title.toLowerCase().includes(searchQuery) || r.description.toLowerCase().includes(searchQuery) || r.implication.toLowerCase().includes(searchQuery));
+
+        const isDimmed = !matchesFilter || !matchesSearch;
+        const isActive = currentActiveCatId === cat.id;
+
+        const pathD = describeArc(center, center, rInner, rOuter, startAngle, endAngle);
+
+        svgHtml += `
+          <g class="pie-segment ${isActive ? 'active-segment' : ''}" 
+             onclick="selectCategory('${cat.id}')"
+             style="opacity: ${isDimmed ? 0.2 : (isActive ? 1 : 0.94)};">
+            <path d="${pathD}" fill="${cat.color}" stroke="#120b07" stroke-width="3.5">
+              <title>${cat.titleEn} - ${cat.titleId}</title>
+            </path>
+        `;
+
+        // Radial Placement Coordinates for ENLARGED EXTRA BOLD ENGLISH TEXT
+        const midAngle = startAngle + (anglePerAspect / 2);
+        const labelR = (rInner + rOuter) / 2;
+        const labelX = center + labelR * Math.cos(midAngle);
+        const labelY = center + labelR * Math.sin(midAngle);
+
+        let deg = (midAngle * 180 / Math.PI);
+        let textRotation = deg;
+        if (deg > 90 || deg < -90) {
+          textRotation += 180;
+        }
+
+        svgHtml += `
+            <text x="${labelX}" y="${labelY}" 
+                  fill="#ffffff" 
+                  font-size="15" 
+                  font-weight="900" 
+                  letter-spacing="0.4"
+                  text-anchor="middle" 
+                  dominant-baseline="central"
+                  transform="rotate(${textRotation}, ${labelX}, ${labelY})"
+                  pointer-events="none"
+                  class="text-stroke-heavy"
+                  opacity="${isDimmed ? 0.35 : 1}">
+              ${cat.titleEn}
+            </text>
+          </g>
+        `;
+
+        currentAngle = endAngle;
+      });
+
+      svgHtml += `</svg>`;
+      wrapper.innerHTML = svgHtml;
+    }
+
+    function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle) {
+      const p1 = polarToCartesian(x, y, outerRadius, endAngle);
+      const p2 = polarToCartesian(x, y, outerRadius, startAngle);
+      const p3 = polarToCartesian(x, y, innerRadius, startAngle);
+      const p4 = polarToCartesian(x, y, innerRadius, endAngle);
+
+      const largeArcFlag = endAngle - startAngle <= Math.PI ? "0" : "1";
+
+      return [
+        "M", p1.x, p1.y,
+        "A", outerRadius, outerRadius, 0, largeArcFlag, 0, p2.x, p2.y,
+        "L", p3.x, p3.y,
+        "A", innerRadius, innerRadius, 0, largeArcFlag, 1, p4.x, p4.y,
+        "Z"
+      ].join(" ");
+    }
+
+    function polarToCartesian(centerX, centerY, radius, angleInRadians) {
+      return {
+        x: centerX + (radius * Math.cos(angleInRadians)),
+        y: centerY + (radius * Math.sin(angleInRadians))
+      };
+    }
+
+    function renderCardsGrid() {
+      const grid = document.getElementById("cards-grid");
+      grid.innerHTML = "";
+      let hasResults = false;
+
+      prpData.forEach(cat => {
+        const matchesFilter = (currentFilter === "ALL" || currentFilter === cat.id);
+        const matchesSearch = searchQuery === "" || 
+                              cat.titleEn.toLowerCase().includes(searchQuery) ||
+                              cat.titleId.toLowerCase().includes(searchQuery) ||
+                              cat.requirements.some(r => r.title.toLowerCase().includes(searchQuery) || r.description.toLowerCase().includes(searchQuery) || r.implication.toLowerCase().includes(searchQuery));
+
+        if (matchesFilter && matchesSearch) {
+          hasResults = true;
+          const isSelected = currentActiveCatId === cat.id;
+
+          const card = document.createElement("div");
+          card.className = `p-5 rounded-2xl bg-aci-darkBg/90 border transition-all duration-200 cursor-pointer ${isSelected ? 'border-aci-orange ring-2 ring-aci-orange/50 bg-aci-brown' : 'border-aci-grey hover:border-slate-500'}`;
+          card.onclick = () => selectCategory(cat.id);
+
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-3 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-base font-bold shrink-0" style="background-color: ${cat.color}">
+                  <i class="fa-solid ${cat.icon}"></i>
+                </div>
+                <div>
+                  <h3 class="text-base font-black text-aci-orange">${cat.titleEn}</h3>
+                  <p class="text-xs sm:text-sm text-slate-200 font-bold">${cat.titleId}</p>
+                </div>
+              </div>
+              <span class="text-xs font-extrabold px-2.5 py-1 rounded-lg bg-aci-navy text-white shrink-0">
+                ${cat.requirements.length} Sub-reqs
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 line-clamp-2 mt-2 leading-relaxed font-medium">${cat.description}</p>
+          `;
+
+          grid.appendChild(card);
+        }
+      });
+
+      if (!hasResults) {
+        grid.innerHTML = `
+          <div class="col-span-full py-16 text-center text-slate-400 space-y-3">
+            <i class="fa-solid fa-magnifying-glass text-3xl text-slate-500"></i>
+            <p class="text-base font-medium">Tidak ditemukan aspek PRP yang cocok dengan kata kunci "${searchQuery}".</p>
+          </div>
+        `;
+      }
+    }
+
+    function selectCategory(catId) {
+      currentActiveCatId = catId;
+      openAccordionIndex = 0;
+
+      const cat = prpData.find(c => c.id === catId);
+      if (!cat) return;
+
+      renderDonutSVG();
+      renderCardsGrid();
+
+      document.getElementById("detail-default-msg").classList.add("hidden");
+      document.getElementById("detail-selected-content").classList.remove("hidden");
+
+      document.getElementById("detail-category-badge").textContent = cat.code;
+      document.getElementById("detail-code-badge").textContent = `${cat.requirements.length} SUB-REQUIREMENTS`;
+      document.getElementById("detail-title-en").textContent = cat.titleEn;
+      document.getElementById("detail-title-id").textContent = cat.titleId;
+      document.getElementById("detail-description").textContent = cat.description;
+      document.getElementById("subreq-count").textContent = cat.requirements.length;
+
+      renderSubrequirementsAccordion(cat.requirements);
+    }
+
+    function renderSubrequirementsAccordion(requirements) {
+      const container = document.getElementById("subreq-accordion-container");
+      container.innerHTML = "";
+
+      requirements.forEach((req, idx) => {
+        const isOpen = idx === openAccordionIndex;
+
+        const accordion = document.createElement("div");
+        accordion.className = `rounded-2xl border transition-all duration-200 overflow-hidden ${isOpen ? 'bg-aci-darkBg border-aci-orange shadow-xl' : 'bg-aci-darkBg/60 border-aci-grey/80 hover:border-slate-500'}`;
+
+        accordion.innerHTML = `
+          <!-- Accordion Header -->
+          <button onclick="toggleAccordion(${idx})" class="w-full p-4 text-left flex items-center justify-between gap-3 focus:outline-none">
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="w-7 h-7 rounded-lg bg-aci-navy border border-aci-orange/40 text-aci-orange font-mono font-black text-xs sm:text-sm flex items-center justify-center shrink-0">
+                ${req.code}
+              </span>
+              <span class="text-sm sm:text-base font-extrabold text-slate-100 truncate">${req.title}</span>
+            </div>
+            <i class="fa-solid ${isOpen ? 'fa-chevron-up text-aci-orange' : 'fa-chevron-down text-slate-400'} text-sm shrink-0 transition-transform"></i>
+          </button>
+
+          <!-- Accordion Collapsible Body -->
+          <div class="${isOpen ? 'block' : 'hidden'} px-4 pb-5 space-y-4 pt-2 border-t border-aci-grey/80">
+            <!-- Official Requirement Description -->
+            <div class="space-y-1.5">
+              <span class="text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-file-lines text-aci-orange"></i> Deskripsi Baku Standard ISO
+              </span>
+              <p class="text-sm sm:text-base text-slate-200 leading-relaxed pl-3.5 border-l-2 border-aci-orange/70 font-medium">
+                ${req.description}
+              </p>
+            </div>
+
+            <!-- Practical Coffee Factory Implication -->
+            <div class="p-4 rounded-xl bg-aci-navy/30 border border-aci-orange/40 text-slate-100 space-y-1.5 shadow-sm">
+              <span class="text-xs font-black uppercase tracking-wider text-aci-orange flex items-center gap-2">
+                <i class="fa-solid fa-mug-hot text-aci-orange"></i> Contoh Implikasi Nyata Pabrik Kopi
+              </span>
+              <p class="text-xs sm:text-sm text-slate-100 leading-relaxed font-normal">
+                ${req.implication}
+              </p>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(accordion);
+      });
+    }
+
+    function toggleAccordion(idx) {
+      if (openAccordionIndex === idx) {
+        openAccordionIndex = -1;
+      } else {
+        openAccordionIndex = idx;
+      }
+      const cat = prpData.find(c => c.id === currentActiveCatId);
+      if (cat) {
+        renderSubrequirementsAccordion(cat.requirements);
+      }
+    }
+
+    function resetDetailToDefault() {
+      currentActiveCatId = null;
+      renderDonutSVG();
+      renderCardsGrid();
+
+      document.getElementById("detail-default-msg").classList.remove("hidden");
+      document.getElementById("detail-selected-content").classList.add("hidden");
+
+      document.getElementById("detail-category-badge").textContent = "PRP ELEMENT";
+      document.getElementById("detail-code-badge").textContent = "ISO 22002-1";
+      document.getElementById("detail-title-en").textContent = "PRP - Food Safety System";
+      document.getElementById("detail-title-id").textContent = "Pilih sektor pada diagram untuk melihat detail";
+    }
+  </script>
+</body>
+</html>
