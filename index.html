@@ -559,4 +559,452 @@
           },
           {
             code: "12.3",
-            title: "Status Kesehatan & Peril
+            title: "Status Kesehatan & Perilaku",
+            description: "Kewajiban melaporkan penyakit menular/gejala pencernaan, penanganan luka terbuka, dan aturan dilarang memakai perhiasan.",
+            implication: "Pekerja yang mengalami luka kecil di tangan wajib melapor, menutup luka dengan plester berwarna terang (berdeteksi logam / blue metal detectable plaster), dan memakai sarung tangan berlapis."
+          }
+        ]
+      },
+      {
+        id: "cat-13",
+        code: "PRP-13",
+        titleEn: "Food Defence & Fraud",
+        titleId: "Keamanan Tambahan (Defense & Fraud)",
+        color: "#9f1239",
+        icon: "fa-shield-cat",
+        description: "Mitigasi ancaman sabotase/kontaminasi disengaja (Food Defense) dan penilaian kerentanan keaslian kopi (Food Fraud).",
+        requirements: [
+          {
+            code: "13.1",
+            title: "Food Defense Assessment",
+            description: "Penilaian ancaman (threat assessment), kontrol pintu masuk, pembatasan akses tamu, dan penguncian tangki/ruang penyimpanan.",
+            implication: "Pemasangan kamera CCTV 24/7 di area kritikal seperti Silo Kopi Curah dan Tangki Ekstraksi, serta penggunaan kartu akses elektronik (access card) untuk masuk ke area pemrosesan utama."
+          },
+          {
+            code: "13.2",
+            title: "Food Fraud Vulnerability",
+            description: "Penilaian kerentanan (vulnerability assessment), verifikasi keaslian spesifikasi bahan baku, dan pengawasan jalur rantai pasok.",
+            implication: "Pengujian spektroskopi/laboratorium berkala untuk memverifikasi keaslian varietas Kopi Arabika dari risiko pencampuran tersembunyi dengan Kopi Robusta murah atau bahan pengisi non-kopi."
+          }
+        ]
+      },
+      {
+        id: "cat-14",
+        code: "PRP-14",
+        titleEn: "Rework Management",
+        titleId: "Pengelolaan Sisa Produk / Rework",
+        color: "#4f46e5",
+        icon: "fa-rotate",
+        description: "Tata cara identifikasi, isolasi, dan penetapan persentase maksimal pencampuran sisa produksi (rework) ke batch baru.",
+        requirements: [
+          {
+            code: "14.1",
+            title: "Identifikasi & Keterunutan Rework",
+            description: "Pelabelan jelas tanggal, shift, jenis produk rework, serta penyimpanan terisolasi dari kontaminasi.",
+            implication: "Wadah penampung bubuk kopi afkir kemasan diberi label warna merah terang mencantumkan Batch Origin, Tanggal, dan Shift, serta disimpan di area khusus Rework."
+          },
+          {
+            code: "14.2",
+            title: "Aturan Penggunaan Rework",
+            description: "Penentuan batasan persentase penambahan rework ke dalam batch baru dan prosedur pelepasan kemasan dari produk rework tanpa mengontaminasi.",
+            implication: "Prosedur SOP menetapkan maksimal 5% bubuk kopi rework yang boleh dimasukkan kembali ke dalam formula batch baru kopi instan, dengan verifikasi kelayakan organoleptik oleh QC."
+          }
+        ]
+      }
+    ];
+
+    let currentActiveCatId = null;
+    let currentFilter = "ALL";
+    let searchQuery = "";
+    let viewMode = "wheel";
+    let openAccordionIndex = 0;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      initCategoryFilterDropdown();
+      initCategoryPills();
+      renderDefaultOverviewList();
+      renderDonutSVG();
+      renderCardsGrid();
+    });
+
+    function initCategoryFilterDropdown() {
+      const select = document.getElementById("category-filter");
+      prpData.forEach(cat => {
+        const opt = document.createElement("option");
+        opt.value = cat.id;
+        opt.textContent = `${cat.titleEn} (${cat.titleId})`;
+        select.appendChild(opt);
+      });
+    }
+
+    function initCategoryPills() {
+      const container = document.getElementById("category-pills");
+      let html = `<button onclick="setCategoryFilter('ALL')" id="pill-ALL" class="pill-item px-3 py-1 rounded-full text-xs font-black border transition-all duration-200 bg-aci-orange text-white border-aci-orange shadow-md">
+                    Semua Aspek
+                  </button>`;
+      
+      prpData.forEach(cat => {
+        html += `<button onclick="setCategoryFilter('${cat.id}')" id="pill-${cat.id}" class="pill-item px-3 py-1 rounded-full text-xs font-bold border border-aci-grey bg-aci-darkBg/80 text-slate-300 hover:text-white hover:border-aci-orange transition-all duration-200 whitespace-nowrap flex items-center gap-1.5">
+                  <i class="fa-solid ${cat.icon} text-xs text-aci-orange"></i> ${cat.titleEn}
+                </button>`;
+      });
+      container.innerHTML = html;
+    }
+
+    function renderDefaultOverviewList() {
+      const container = document.getElementById("default-aspects-list");
+      let html = "";
+      prpData.forEach(cat => {
+        html += `
+          <div onclick="selectCategory('${cat.id}')" class="p-2.5 sm:p-3 rounded-xl bg-aci-darkBg/90 border border-aci-grey hover:border-aci-orange cursor-pointer transition flex items-center gap-2.5 group shadow-sm">
+            <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center text-white text-xs font-bold shrink-0" style="background-color: ${cat.color}">
+              <i class="fa-solid ${cat.icon}"></i>
+            </div>
+            <div class="overflow-hidden min-w-0">
+              <span class="font-extrabold text-slate-200 group-hover:text-aci-orange transition block truncate text-xs sm:text-sm">${cat.titleEn}</span>
+              <span class="text-[10px] sm:text-xs text-slate-400 block truncate font-semibold">${cat.requirements.length} Sub-reqs</span>
+            </div>
+          </div>
+        `;
+      });
+      container.innerHTML = html;
+    }
+
+    function setViewMode(mode) {
+      viewMode = mode;
+      const wheelContainer = document.getElementById("view-wheel-container");
+      const cardContainer = document.getElementById("view-card-container");
+      const btnWheel = document.getElementById("btn-view-wheel");
+      const btnCard = document.getElementById("btn-view-card");
+
+      if (mode === "wheel") {
+        wheelContainer.classList.remove("hidden");
+        cardContainer.classList.add("hidden");
+        btnWheel.className = "px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-extrabold transition-all duration-200 flex items-center gap-1.5 bg-aci-navy text-white shadow-md border border-aci-navy";
+        btnCard.className = "px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 flex items-center gap-1.5";
+      } else {
+        wheelContainer.classList.add("hidden");
+        cardContainer.classList.remove("hidden");
+        btnCard.className = "px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-extrabold transition-all duration-200 flex items-center gap-1.5 bg-aci-navy text-white shadow-md border border-aci-navy";
+        btnWheel.className = "px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 flex items-center gap-1.5";
+      }
+    }
+
+    function handleFilterChange() {
+      const val = document.getElementById("category-filter").value;
+      setCategoryFilter(val, false);
+    }
+
+    function setCategoryFilter(catId, updateDropdown = true) {
+      currentFilter = catId;
+      if (updateDropdown) {
+        document.getElementById("category-filter").value = catId;
+      }
+
+      document.querySelectorAll(".pill-item").forEach(p => {
+        p.className = "pill-item px-3 py-1 rounded-full text-xs font-bold border border-aci-grey bg-aci-darkBg/80 text-slate-300 hover:text-white hover:border-aci-orange transition-all duration-200 whitespace-nowrap flex items-center gap-1.5";
+      });
+
+      const activePill = document.getElementById(`pill-${catId}`);
+      if (activePill) {
+        activePill.className = "pill-item px-3 py-1 rounded-full text-xs font-black border transition-all duration-200 bg-aci-orange text-white border-aci-orange shadow-md whitespace-nowrap flex items-center gap-1.5";
+        activePill.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+
+      renderDonutSVG();
+      renderCardsGrid();
+
+      if (catId !== "ALL") {
+        selectCategory(catId);
+      }
+    }
+
+    function handleSearch() {
+      searchQuery = document.getElementById("search-input").value.toLowerCase().trim();
+      const clearBtn = document.getElementById("clear-search");
+      if (searchQuery.length > 0) {
+        clearBtn.classList.remove("hidden");
+      } else {
+        clearBtn.classList.add("hidden");
+      }
+
+      renderDonutSVG();
+      renderCardsGrid();
+    }
+
+    function clearSearch() {
+      document.getElementById("search-input").value = "";
+      handleSearch();
+    }
+
+    function resetSelection() {
+      clearSearch();
+      setCategoryFilter("ALL");
+      resetDetailToDefault();
+    }
+
+    // --- RENDER HIGH-RESOLUTION SVG DONUT CHART ---
+    function renderDonutSVG() {
+      const wrapper = document.getElementById("svg-wrapper");
+      
+      const size = 800;
+      const center = size / 2; // 400px
+      const rInner = 115;
+      const rOuter = 375;
+
+      const totalAspects = prpData.length;
+      const anglePerAspect = (2 * Math.PI) / totalAspects;
+
+      let svgHtml = `<svg viewBox="0 0 ${size} ${size}" class="w-full h-full font-sans" xmlns="http://www.w3.org/2000/svg">`;
+
+      // Central Core Circle
+      svgHtml += `
+        <g class="cursor-pointer" onclick="resetDetailToDefault()">
+          <circle cx="${center}" cy="${center}" r="${rInner - 4}" fill="#120b07" stroke="#f37025" stroke-width="3" />
+          <circle cx="${center}" cy="${center}" r="${rInner - 12}" fill="#025743" opacity="0.95"/>
+          <text x="${center}" y="${center - 12}" text-anchor="middle" fill="#f37025" font-weight="900" font-size="20" letter-spacing="1">PRP</text>
+          <text x="${center}" y="${center + 8}" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="13" letter-spacing="0.5">FOOD SAFETY</text>
+          <text x="${center}" y="${center + 26}" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="700">ISO 22000 / 22002-1[cite: 1]</text>
+        </g>
+      `;
+
+      let currentAngle = -Math.PI / 2;
+
+      prpData.forEach((cat, idx) => {
+        const startAngle = currentAngle;
+        const endAngle = startAngle + anglePerAspect;
+
+        const matchesFilter = (currentFilter === "ALL" || currentFilter === cat.id);
+        const matchesSearch = searchQuery === "" || 
+                              cat.titleEn.toLowerCase().includes(searchQuery) ||
+                              cat.titleId.toLowerCase().includes(searchQuery) ||
+                              cat.description.toLowerCase().includes(searchQuery) ||
+                              cat.requirements.some(r => r.title.toLowerCase().includes(searchQuery) || r.description.toLowerCase().includes(searchQuery) || r.implication.toLowerCase().includes(searchQuery));
+
+        const isDimmed = !matchesFilter || !matchesSearch;
+        const isActive = currentActiveCatId === cat.id;
+
+        const pathD = describeArc(center, center, rInner, rOuter, startAngle, endAngle);
+
+        svgHtml += `
+          <g class="pie-segment ${isActive ? 'active-segment' : ''}" 
+             onclick="selectCategory('${cat.id}')"
+             style="opacity: ${isDimmed ? 0.2 : 1};">
+            <path d="${pathD}" fill="${cat.color}" stroke="#120b07" stroke-width="2.5">
+              <title>${cat.titleEn} - ${cat.titleId}</title>
+            </path>
+        `;
+
+        const midAngle = startAngle + (anglePerAspect / 2);
+        const labelR = (rInner + rOuter) / 2;
+        const labelX = center + labelR * Math.cos(midAngle);
+        const labelY = center + labelR * Math.sin(midAngle);
+
+        let deg = (midAngle * 180 / Math.PI);
+        let textRotation = deg;
+        if (deg > 90 || deg < -90) {
+          textRotation += 180;
+        }
+
+        svgHtml += `
+            <text x="${labelX}" y="${labelY}" 
+                  fill="#ffffff" 
+                  font-size="18" 
+                  font-weight="900" 
+                  letter-spacing="0.3"
+                  text-anchor="middle" 
+                  dominant-baseline="central"
+                  transform="rotate(${textRotation}, ${labelX}, ${labelY})"
+                  pointer-events="none"
+                  opacity="${isDimmed ? 0.3 : 1}">
+              ${cat.titleEn}
+            </text>
+          </g>
+        `;
+
+        currentAngle = endAngle;
+      });
+
+      svgHtml += `</svg>`;
+      wrapper.innerHTML = svgHtml;
+    }
+
+    function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle) {
+      const p1 = polarToCartesian(x, y, outerRadius, endAngle);
+      const p2 = polarToCartesian(x, y, outerRadius, startAngle);
+      const p3 = polarToCartesian(x, y, innerRadius, startAngle);
+      const p4 = polarToCartesian(x, y, innerRadius, endAngle);
+
+      const largeArcFlag = endAngle - startAngle <= Math.PI ? "0" : "1";
+
+      return [
+        "M", p1.x, p1.y,
+        "A", outerRadius, outerRadius, 0, largeArcFlag, 0, p2.x, p2.y,
+        "L", p3.x, p3.y,
+        "A", innerRadius, innerRadius, 0, largeArcFlag, 1, p4.x, p4.y,
+        "Z"
+      ].join(" ");
+    }
+
+    function polarToCartesian(centerX, centerY, radius, angleInRadians) {
+      return {
+        x: centerX + (radius * Math.cos(angleInRadians)),
+        y: centerY + (radius * Math.sin(angleInRadians))
+      };
+    }
+
+    function renderCardsGrid() {
+      const grid = document.getElementById("cards-grid");
+      grid.innerHTML = "";
+      let hasResults = false;
+
+      prpData.forEach(cat => {
+        const matchesFilter = (currentFilter === "ALL" || currentFilter === cat.id);
+        const matchesSearch = searchQuery === "" || 
+                              cat.titleEn.toLowerCase().includes(searchQuery) ||
+                              cat.titleId.toLowerCase().includes(searchQuery) ||
+                              cat.requirements.some(r => r.title.toLowerCase().includes(searchQuery) || r.description.toLowerCase().includes(searchQuery) || r.implication.toLowerCase().includes(searchQuery));
+
+        if (matchesFilter && matchesSearch) {
+          hasResults = true;
+          const isSelected = currentActiveCatId === cat.id;
+
+          const card = document.createElement("div");
+          card.className = `p-4 sm:p-5 rounded-2xl bg-aci-darkBg/90 border transition-all duration-200 cursor-pointer ${isSelected ? 'border-aci-orange ring-2 ring-aci-orange/50 bg-aci-brown' : 'border-aci-grey hover:border-slate-500'}`;
+          card.onclick = () => selectCategory(cat.id);
+
+          card.innerHTML = `
+            <div class="flex items-start justify-between gap-3 mb-2 sm:mb-3">
+              <div class="flex items-center gap-2.5 sm:gap-3">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center text-white text-xs sm:text-base font-bold shrink-0" style="background-color: ${cat.color}">
+                  <i class="fa-solid ${cat.icon}"></i>
+                </div>
+                <div>
+                  <h3 class="text-sm sm:text-base font-black text-aci-orange">${cat.titleEn}</h3>
+                  <p class="text-xs sm:text-sm text-slate-200 font-bold">${cat.titleId}</p>
+                </div>
+              </div>
+              <span class="text-[10px] sm:text-xs font-extrabold px-2 py-0.5 rounded-lg bg-aci-navy text-white shrink-0">
+                ${cat.requirements.length} Sub-reqs
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-300 line-clamp-2 mt-1 sm:mt-2 leading-relaxed font-medium">${cat.description}</p>
+          `;
+
+          grid.appendChild(card);
+        }
+      });
+
+      if (!hasResults) {
+        grid.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-400 space-y-2">
+            <i class="fa-solid fa-magnifying-glass text-2xl text-slate-500"></i>
+            <p class="text-sm font-medium">Tidak ditemukan aspek PRP yang cocok dengan kata kunci "${searchQuery}".</p>
+          </div>
+        `;
+      }
+    }
+
+    function selectCategory(catId) {
+      currentActiveCatId = catId;
+      openAccordionIndex = 0;
+
+      const cat = prpData.find(c => c.id === catId);
+      if (!cat) return;
+
+      renderDonutSVG();
+      renderCardsGrid();
+
+      document.getElementById("detail-default-msg").classList.add("hidden");
+      document.getElementById("detail-selected-content").classList.remove("hidden");
+
+      document.getElementById("detail-category-badge").textContent = cat.code;
+      document.getElementById("detail-code-badge").textContent = `${cat.requirements.length} SUB-REQUIREMENTS`;
+      document.getElementById("detail-title-en").textContent = cat.titleEn;
+      document.getElementById("detail-title-id").textContent = cat.titleId;
+      document.getElementById("detail-description").textContent = cat.description;
+      document.getElementById("subreq-count").textContent = cat.requirements.length;
+
+      renderSubrequirementsAccordion(cat.requirements);
+
+      // Smooth auto-scroll to detail panel on mobile view
+      if (window.innerWidth < 1024) {
+        const detailPanel = document.getElementById("detail-panel");
+        detailPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    function renderSubrequirementsAccordion(requirements) {
+      const container = document.getElementById("subreq-accordion-container");
+      container.innerHTML = "";
+
+      requirements.forEach((req, idx) => {
+        const isOpen = idx === openAccordionIndex;
+
+        const accordion = document.createElement("div");
+        accordion.className = `rounded-2xl border transition-all duration-200 overflow-hidden ${isOpen ? 'bg-aci-darkBg border-aci-orange shadow-xl' : 'bg-aci-darkBg/60 border-aci-grey/80 hover:border-slate-500'}`;
+
+        accordion.innerHTML = `
+          <button onclick="toggleAccordion(${idx})" class="w-full p-3.5 sm:p-4 text-left flex items-center justify-between gap-3 focus:outline-none">
+            <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
+              <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-aci-navy border border-aci-orange/40 text-aci-orange font-mono font-black text-xs sm:text-sm flex items-center justify-center shrink-0">
+                ${req.code}
+              </span>
+              <span class="text-xs sm:text-base font-extrabold text-slate-100 truncate">${req.title}</span>
+            </div>
+            <i class="fa-solid ${isOpen ? 'fa-chevron-up text-aci-orange' : 'fa-chevron-down text-slate-400'} text-xs sm:text-sm shrink-0 transition-transform"></i>
+          </button>
+
+          <div class="${isOpen ? 'block' : 'hidden'} px-3.5 sm:px-4 pb-4 sm:pb-5 space-y-3 sm:space-y-4 pt-1 sm:pt-2 border-t border-aci-grey/80">
+            <div class="space-y-1">
+              <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-file-lines text-aci-orange"></i> Deskripsi Baku Standard ISO[cite: 1]
+              </span>
+              <p class="text-xs sm:text-base text-slate-200 leading-relaxed pl-3 border-l-2 border-aci-orange/70 font-medium">
+                ${req.description}
+              </p>
+            </div>
+
+            <div class="p-3 sm:p-4 rounded-xl bg-aci-navy/30 border border-aci-orange/40 text-slate-100 space-y-1 shadow-sm">
+              <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-aci-orange flex items-center gap-1.5">
+                <i class="fa-solid fa-mug-hot text-aci-orange"></i> Contoh Implikasi Nyata Pabrik Kopi
+              </span>
+              <p class="text-xs sm:text-sm text-slate-100 leading-relaxed font-normal">
+                ${req.implication}
+              </p>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(accordion);
+      });
+    }
+
+    function toggleAccordion(idx) {
+      if (openAccordionIndex === idx) {
+        openAccordionIndex = -1;
+      } else {
+        openAccordionIndex = idx;
+      }
+      const cat = prpData.find(c => c.id === currentActiveCatId);
+      if (cat) {
+        renderSubrequirementsAccordion(cat.requirements);
+      }
+    }
+
+    function resetDetailToDefault() {
+      currentActiveCatId = null;
+      renderDonutSVG();
+      renderCardsGrid();
+
+      document.getElementById("detail-default-msg").classList.remove("hidden");
+      document.getElementById("detail-selected-content").classList.add("hidden");
+
+      document.getElementById("detail-category-badge").textContent = "PRP ELEMENT";
+      document.getElementById("detail-code-badge").textContent = "ISO 22002-1[cite: 1]";
+      document.getElementById("detail-title-en").textContent = "PRP - Food Safety System";
+      document.getElementById("detail-title-id").textContent = "Pilih sektor pada diagram untuk melihat detail";
+    }
+  </script>
+</body>
+</html>
