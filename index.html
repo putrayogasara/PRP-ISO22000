@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="id" class="h-full bg-[#1a0f0a] text-slate-100">
+<html lang="id" class="h-full bg-slate-50 text-slate-800">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -17,11 +17,11 @@
           colors: {
             aci: {
               navy: '#025743',    /* Primary Brand Navy Green */
-              brown: '#2a1a11',   /* Secondary Brand Dark Brown */
-              darkBg: '#120b07',  /* Deep Dark Background */
+              brown: '#f8fafc',   /* Light Theme Container Background */
+              darkBg: '#ffffff',  /* Pure White Surface */
               orange: '#f37025',  /* Accent Orange */
-              grey: '#414042',    /* Accent Neutral Grey */
-              cardBg: '#1d120c'
+              grey: '#cbd5e1',    /* Light Neutral Border */
+              cardBg: '#ffffff'
             }
           }
         }
@@ -35,7 +35,7 @@
       height: 8px;
     }
     ::-webkit-scrollbar-track {
-      background: #120b07;
+      background: #f1f5f9;
     }
     ::-webkit-scrollbar-thumb {
       background: #025743;
@@ -53,7 +53,7 @@
       -webkit-tap-highlight-color: transparent;
     }
     .pie-segment:hover {
-      filter: brightness(1.15);
+      filter: brightness(1.08);
       opacity: 1 !important;
     }
     .pie-segment.active-segment path {
@@ -71,34 +71,34 @@
     }
   </style>
 </head>
-<body class="min-h-full bg-aci-darkBg text-slate-100 flex flex-col font-sans selection:bg-aci-orange selection:text-white lg:h-screen lg:overflow-hidden">
+<body class="min-h-full bg-slate-100 text-slate-800 flex flex-col font-sans selection:bg-aci-orange selection:text-white lg:h-screen lg:overflow-hidden">
 
   <!-- Header Navigation Bar -->
-  <header class="bg-aci-brown/95 border-b border-aci-grey/60 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-8 py-3 flex flex-wrap justify-between items-center gap-3 shrink-0 shadow-xl">
+  <header class="bg-white border-b border-slate-200 backdrop-blur-md sticky top-0 z-40 px-4 sm:px-8 py-3 flex flex-wrap justify-between items-center gap-3 shrink-0 shadow-sm">
     <div class="flex items-center gap-3">
-      <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-aci-navy border border-aci-orange/40 flex items-center justify-center text-aci-orange text-lg sm:text-xl shadow-lg shrink-0">
+      <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-aci-navy border border-aci-orange/40 flex items-center justify-center text-aci-orange text-lg sm:text-xl shadow-md shrink-0">
         <i class="fa-solid fa-shield-halved"></i>
       </div>
       <div>
-        <h1 class="text-sm sm:text-xl font-black tracking-tight text-white flex flex-wrap items-center gap-2">
-          PRP &amp; FSSC V7 Diagram <span class="text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full bg-aci-orange/20 text-aci-orange border border-aci-orange/50">ISO 22000 / FSSC V7[cite: 1]</span>
+        <h1 class="text-sm sm:text-xl font-black tracking-tight text-slate-900 flex flex-wrap items-center gap-2">
+          PRP &amp; FSSC V7 Diagram <span class="text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full bg-aci-orange/10 text-aci-orange border border-aci-orange/30">ISO 22000 / FSSC V7[cite: 1]</span>
         </h1>
-        <p class="text-[11px] sm:text-sm text-slate-300 font-semibold">PT Aneka Coffee Industry &bull; Interactive Food Safety Wheel Guidance</p>
+        <p class="text-[11px] sm:text-sm text-slate-600 font-semibold">PT Aneka Coffee Industry &bull; Interactive Food Safety Wheel Guidance</p>
       </div>
     </div>
 
     <!-- Controls Bar Header -->
     <div class="flex items-center gap-2 ml-auto lg:ml-0">
-      <div class="bg-aci-darkBg/90 p-1 rounded-xl border border-aci-grey flex items-center shadow-inner">
+      <div class="bg-slate-100 p-1 rounded-xl border border-slate-200 flex items-center shadow-inner">
         <button id="btn-view-wheel" onclick="setViewMode('wheel')" class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-extrabold transition-all duration-200 flex items-center gap-1.5 bg-aci-navy text-white shadow-md border border-aci-navy">
           <i class="fa-solid fa-chart-pie text-xs sm:text-base text-aci-orange"></i> <span>Diagram</span>
         </button>
-        <button id="btn-view-card" onclick="setViewMode('card')" class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 flex items-center gap-1.5">
+        <button id="btn-view-card" onclick="setViewMode('card')" class="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition-all duration-200 flex items-center gap-1.5">
           <i class="fa-solid fa-border-all text-xs sm:text-base"></i> <span>Daftar</span>
         </button>
       </div>
 
-      <button onclick="resetSelection()" class="p-2 text-slate-300 hover:text-aci-orange hover:bg-aci-cardBg rounded-xl border border-aci-grey transition-all" title="Reset Pilihan">
+      <button onclick="resetSelection()" class="p-2 text-slate-600 hover:text-aci-orange hover:bg-slate-100 rounded-xl border border-slate-200 transition-all shadow-sm" title="Reset Pilihan">
         <i class="fa-solid fa-rotate-right text-sm sm:text-base"></i>
       </button>
     </div>
@@ -108,33 +108,33 @@
   <main class="flex-1 flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden relative">
     
     <!-- LEFT PANEL: Visual Large Diagram / List View -->
-    <section class="w-full lg:flex-1 flex flex-col border-b lg:border-b-0 lg:border-r border-aci-grey/60 bg-aci-darkBg/90 shrink-0 lg:shrink lg:h-full lg:overflow-hidden">
+    <section class="w-full lg:flex-1 flex flex-col border-b lg:border-b-0 lg:border-r border-slate-200 bg-white shrink-0 lg:shrink lg:h-full lg:overflow-hidden">
       
       <!-- Toolbar Filter & Search -->
-      <div class="p-3 sm:p-4 border-b border-aci-grey/60 bg-aci-brown/40 flex flex-col sm:flex-row gap-3 items-center justify-between shrink-0">
+      <div class="p-3 sm:p-4 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row gap-3 items-center justify-between shrink-0">
         <div class="relative w-full sm:w-96">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs sm:text-sm"></i>
           <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Cari kata kunci (FSSC V7, EMP, Alergen, Kopi, dsb)..." 
-                 class="w-full bg-aci-cardBg/90 text-xs sm:text-sm text-slate-100 placeholder-slate-400 pl-10 pr-9 py-2 sm:py-2.5 rounded-xl border border-aci-grey/80 focus:outline-none focus:border-aci-orange focus:ring-2 focus:ring-aci-orange/30 transition-all font-medium">
-          <button id="clear-search" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs">
+                 class="w-full bg-white text-xs sm:text-sm text-slate-800 placeholder-slate-400 pl-10 pr-9 py-2 sm:py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:border-aci-orange focus:ring-2 focus:ring-aci-orange/20 transition-all font-medium shadow-sm">
+          <button id="clear-search" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 text-xs">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
 
         <div class="w-full sm:w-auto flex items-center gap-2">
-          <label class="text-xs sm:text-sm font-bold text-slate-300 whitespace-nowrap hidden md:inline"><i class="fa-solid fa-filter mr-1.5 text-aci-orange"></i>Filter Aspek:</label>
-          <select id="category-filter" onchange="handleFilterChange()" class="w-full sm:w-72 bg-aci-cardBg/90 text-xs sm:text-sm text-slate-100 font-semibold border border-aci-grey rounded-xl px-3 py-2 sm:py-2.5 focus:outline-none focus:border-aci-orange transition-all">
+          <label class="text-xs sm:text-sm font-bold text-slate-700 whitespace-nowrap hidden md:inline"><i class="fa-solid fa-filter mr-1.5 text-aci-orange"></i>Filter Aspek:</label>
+          <select id="category-filter" onchange="handleFilterChange()" class="w-full sm:w-72 bg-white text-xs sm:text-sm text-slate-800 font-semibold border border-slate-300 rounded-xl px-3 py-2 sm:py-2.5 focus:outline-none focus:border-aci-orange transition-all shadow-sm">
             <option value="ALL">Semua 15 Aspek (PRP + FSSC V7)</option>
           </select>
         </div>
       </div>
 
       <!-- Quick Category Pills -->
-      <div class="px-3 sm:px-4 py-2 border-b border-aci-grey/40 bg-aci-brown/20 overflow-x-auto whitespace-nowrap flex gap-2 no-scrollbar shrink-0" id="category-pills"></div>
+      <div class="px-3 sm:px-4 py-2 border-b border-slate-200 bg-slate-100/70 overflow-x-auto whitespace-nowrap flex gap-2 no-scrollbar shrink-0" id="category-pills"></div>
 
       <!-- VIEW 1: CIRCULAR DIAGRAM VIEW -->
       <div id="view-wheel-container" class="flex-1 relative flex flex-col items-center justify-center p-2 sm:p-4 min-h-[380px] sm:min-h-[500px]">
-        <div class="w-full max-w-md lg:max-w-none mb-2 lg:mb-0 lg:absolute lg:top-4 lg:left-4 z-10 pointer-events-none bg-aci-brown/90 backdrop-blur-md border border-aci-grey/80 rounded-xl px-3 py-1.5 text-[11px] sm:text-xs font-bold text-slate-200 flex items-center justify-center lg:justify-start gap-2 shadow-xl">
+        <div class="w-full max-w-md lg:max-w-none mb-2 lg:mb-0 lg:absolute lg:top-4 lg:left-4 z-10 pointer-events-none bg-white/90 backdrop-blur-md border border-slate-200 rounded-xl px-3 py-1.5 text-[11px] sm:text-xs font-bold text-slate-700 flex items-center justify-center lg:justify-start gap-2 shadow-md">
           <span class="w-2 h-2 rounded-full bg-aci-orange animate-ping shrink-0"></span>
           <span>Klik sektor diagram untuk melihat detail &amp; implikasi</span>
         </div>
@@ -143,57 +143,57 @@
       </div>
 
       <!-- VIEW 2: LIST / CARD VIEW -->
-      <div id="view-card-container" class="hidden flex-1 overflow-y-auto p-4 space-y-4 max-h-[600px] lg:max-h-none">
+      <div id="view-card-container" class="hidden flex-1 overflow-y-auto p-4 space-y-4 max-h-[600px] lg:max-h-none bg-slate-50">
         <div id="cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4"></div>
       </div>
 
     </section>
 
     <!-- RIGHT PANEL: INDEPENDENT SCROLLING DETAILS & ACCORDION -->
-    <aside id="detail-panel" class="w-full lg:w-[540px] xl:w-[620px] bg-aci-brown/95 backdrop-blur-md flex flex-col shrink-0 lg:h-full lg:overflow-hidden shadow-2xl">
+    <aside id="detail-panel" class="w-full lg:w-[540px] xl:w-[620px] bg-white border-l border-slate-200 flex flex-col shrink-0 lg:h-full lg:overflow-hidden shadow-xl">
       
       <!-- Panel Fixed Header -->
-      <div class="p-4 sm:p-5 border-b border-aci-grey/80 bg-aci-brown flex justify-between items-start gap-3 shrink-0 shadow-md">
+      <div class="p-4 sm:p-5 border-b border-slate-200 bg-slate-50 flex justify-between items-start gap-3 shrink-0 shadow-sm">
         <div class="space-y-1">
           <div class="flex items-center gap-2">
             <span id="detail-category-badge" class="px-2.5 py-0.5 rounded-full text-[10px] sm:text-xs font-black tracking-wider uppercase bg-aci-navy text-white border border-aci-orange/40">
               PRP Element
             </span>
-            <span id="detail-code-badge" class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-aci-darkBg text-slate-300 border border-aci-grey/60">
+            <span id="detail-code-badge" class="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-mono font-bold bg-slate-100 text-slate-700 border border-slate-300">
               ISO 22002-1[cite: 1]
             </span>
           </div>
-          <h2 id="detail-title-en" class="text-lg sm:text-2xl font-black text-aci-orange tracking-tight leading-tight">
+          <h2 id="detail-title-en" class="text-lg sm:text-2xl font-black text-slate-900 tracking-tight leading-tight">
             PRP - Food Safety System
           </h2>
-          <p id="detail-title-id" class="text-xs sm:text-base text-slate-200 font-bold">
+          <p id="detail-title-id" class="text-xs sm:text-base text-slate-600 font-bold">
             Pilih sektor pada diagram untuk melihat detail
           </p>
         </div>
-        <button onclick="resetDetailToDefault()" class="text-slate-400 hover:text-aci-orange p-2 rounded-xl hover:bg-aci-cardBg text-xs sm:text-sm flex items-center gap-1.5 transition font-semibold" title="Tampilkan Gambaran Umum">
+        <button onclick="resetDetailToDefault()" class="text-slate-500 hover:text-aci-orange p-2 rounded-xl hover:bg-slate-200 text-xs sm:text-sm flex items-center gap-1.5 transition font-semibold" title="Tampilkan Gambaran Umum">
           <i class="fa-solid fa-arrows-rotate text-sm sm:text-base"></i>
         </button>
       </div>
 
       <!-- Panel Body -->
-      <div id="detail-body" class="p-4 sm:p-6 space-y-5 text-sm sm:text-base leading-relaxed lg:flex-1 lg:overflow-y-auto">
+      <div id="detail-body" class="p-4 sm:p-6 space-y-5 text-sm sm:text-base leading-relaxed lg:flex-1 lg:overflow-y-auto bg-white">
         
         <!-- DEFAULT STATE -->
         <div id="detail-default-msg" class="py-2 sm:py-4 space-y-5">
-          <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-aci-navy/40 via-aci-brown to-aci-darkBg border border-aci-orange/40 text-center space-y-3 shadow-lg">
-            <div class="w-12 h-12 rounded-2xl bg-aci-navy border border-aci-orange/50 flex items-center justify-center text-aci-orange text-xl mx-auto shadow-inner">
+          <div class="p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-emerald-50 via-slate-50 to-white border border-emerald-200 text-center space-y-3 shadow-sm">
+            <div class="w-12 h-12 rounded-2xl bg-aci-navy border border-aci-orange/50 flex items-center justify-center text-aci-orange text-xl mx-auto shadow-md">
               <i class="fa-solid fa-hand-pointer animate-bounce"></i>
             </div>
             <div>
-              <h3 class="font-black text-slate-100 text-base sm:text-lg">Petunjuk Navigasi Diagram</h3>
-              <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed font-medium">
-                Diagram sirkular menampilkan **14 Aspek PRP Utama + 1 Pilar FSSC V7 Additional Requirements**. Sentuh/klik sektor manapun untuk menampilkan rincian Sub-Requirement dan implikasi nyatanya di PT Aneka Coffee Industry.
+              <h3 class="font-black text-slate-900 text-base sm:text-lg">Petunjuk Navigasi Diagram</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1.5 leading-relaxed font-medium">
+                Diagram sirkular menampilkan <strong>14 Aspek PRP Utama + 1 Pilar FSSC V7 Additional Requirements</strong>. Sentuh/klik sektor manapun untuk menampilkan rincian Sub-Requirement dan implikasi nyatanya di PT Aneka Coffee Industry.
               </p>
             </div>
           </div>
 
           <div class="space-y-2.5">
-            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
+            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
               <i class="fa-solid fa-list-check text-aci-orange text-sm"></i> Ringkasan Aspek (Termasuk FSSC V7)
             </h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm" id="default-aspects-list"></div>
@@ -202,17 +202,17 @@
 
         <!-- ACTIVE SELECTED CATEGORY CONTENT -->
         <div id="detail-selected-content" class="hidden space-y-5">
-          <div class="p-4 rounded-2xl bg-aci-darkBg/90 border border-aci-grey text-xs sm:text-base text-slate-200 leading-relaxed space-y-1.5 shadow-inner">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-xs sm:text-base text-slate-800 leading-relaxed space-y-1.5 shadow-sm">
             <span class="text-[11px] sm:text-xs uppercase font-black text-aci-orange tracking-wider block">Deskripsi Aspek Utama:</span>
-            <p id="detail-description" class="font-medium text-slate-300 leading-relaxed"></p>
+            <p id="detail-description" class="font-medium text-slate-700 leading-relaxed"></p>
           </div>
 
           <div class="space-y-3">
             <div class="flex items-center justify-between">
-              <h3 class="text-xs sm:text-sm uppercase font-black text-aci-orange tracking-wider flex items-center gap-2">
-                <i class="fa-solid fa-layer-group text-sm sm:text-base"></i> Sub-Requirement &amp; Implikasi (<span id="subreq-count">0</span>)
+              <h3 class="text-xs sm:text-sm uppercase font-black text-slate-800 tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-layer-group text-sm sm:text-base text-aci-orange"></i> Sub-Requirement &amp; Implikasi (<span id="subreq-count">0</span>)
               </h3>
-              <span class="text-[11px] sm:text-xs text-slate-400 font-semibold">Klik card untuk buka/tutup</span>
+              <span class="text-[11px] sm:text-xs text-slate-500 font-semibold">Klik card untuk buka/tutup</span>
             </div>
 
             <div id="subreq-accordion-container" class="space-y-3 sm:space-y-4"></div>
@@ -222,9 +222,9 @@
       </div>
 
       <!-- Panel Fixed Footer -->
-      <div class="p-3 sm:p-4 border-t border-aci-grey/80 bg-aci-brown flex items-center justify-between text-xs sm:text-sm text-slate-300 shrink-0">
-        <span class="font-extrabold text-white">PT Aneka Coffee Industry</span>
-        <span class="flex items-center gap-1.5 font-bold text-emerald-400 text-xs sm:text-sm">
+      <div class="p-3 sm:p-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between text-xs sm:text-sm text-slate-600 shrink-0">
+        <span class="font-extrabold text-slate-800">PT Aneka Coffee Industry</span>
+        <span class="flex items-center gap-1.5 font-bold text-emerald-600 text-xs sm:text-sm">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> FSSC V7 (Mei 2026)[cite: 1]
         </span>
       </div>
@@ -269,7 +269,7 @@
         code: "PRP-02",
         titleEn: "Layout & Zoning",
         titleId: "Desain & Fasilitas Ruang Kerja",
-        color: "#5c3317",
+        color: "#78350f",
         icon: "fa-draw-polygon",
         description: "Perancangan zona interior, tata letak alur proses, dan fasilitas pendukung untuk menjaga sanitasi produk kopi.",
         requirements: [
@@ -385,7 +385,7 @@
         code: "PRP-06",
         titleEn: "Waste Management",
         titleId: "Pengelolaan Limbah & Daur Ulang",
-        color: "#414042",
+        color: "#475569",
         icon: "fa-trash-can",
         description: "Sistem identifikasi, penampungan, dan pembuangan limbah sisa pengolahan kopi serta tata kelola palet.",
         requirements: [
@@ -616,7 +616,7 @@
         code: "FSSC-V7",
         titleEn: "FSSC V7 Additional Req.",
         titleId: "Persyaratan Tambahan FSSC V7 (Clause 2.5)",
-        color: "#b45309",
+        color: "#c2410c",
         icon: "fa-certificate",
         description: "Persyaratan wajib tambahan skema FSSC 22000 Version 7 (Mei 2026) mencakup EMP, Quality Control, Food Safety Culture, hingga Food Loss & Waste.",
         requirements: [
@@ -692,12 +692,12 @@
 
     function initCategoryPills() {
       const container = document.getElementById("category-pills");
-      let html = `<button onclick="setCategoryFilter('ALL')" id="pill-ALL" class="pill-item px-3 py-1 rounded-full text-xs font-black border transition-all duration-200 bg-aci-orange text-white border-aci-orange shadow-md">
+      let html = `<button onclick="setCategoryFilter('ALL')" id="pill-ALL" class="pill-item px-3 py-1 rounded-full text-xs font-black border transition-all duration-200 bg-aci-orange text-white border-aci-orange shadow-sm">
                     Semua Aspek (15)
                   </button>`;
       
       prpData.forEach(cat => {
-        html += `<button onclick="setCategoryFilter('${cat.id}')" id="pill-${cat.id}" class="pill-item px-3 py-1 rounded-full text-xs font-bold border border-aci-grey bg-aci-darkBg/80 text-slate-300 hover:text-white hover:border-aci-orange transition-all duration-200 whitespace-nowrap flex items-center gap-1.5">
+        html += `<button onclick="setCategoryFilter('${cat.id}')" id="pill-${cat.id}" class="pill-item px-3 py-1 rounded-full text-xs font-bold border border-slate-300 bg-white text-slate-700 hover:text-slate-900 hover:border-aci-orange transition-all duration-200 whitespace-nowrap flex items-center gap-1.5 shadow-sm">
                   <i class="fa-solid ${cat.icon} text-xs text-aci-orange"></i> ${cat.titleEn}
                 </button>`;
       });
@@ -709,13 +709,13 @@
       let html = "";
       prpData.forEach(cat => {
         html += `
-          <div onclick="selectCategory('${cat.id}')" class="p-2.5 sm:p-3 rounded-xl bg-aci-darkBg/90 border border-aci-grey hover:border-aci-orange cursor-pointer transition flex items-center gap-2.5 group shadow-sm">
+          <div onclick="selectCategory('${cat.id}')" class="p-2.5 sm:p-3 rounded-xl bg-white border border-slate-200 hover:border-aci-orange cursor-pointer transition flex items-center gap-2.5 group shadow-sm">
             <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg flex items-center justify-center text-white text-xs font-bold shrink-0" style="background-color: ${cat.color}">
               <i class="fa-solid ${cat.icon}"></i>
             </div>
             <div class="overflow-hidden min-w-0">
-              <span class="font-extrabold text-slate-200 group-hover:text-aci-orange transition block truncate text-xs sm:text-sm">${cat.titleEn}</span>
-              <span class="text-[10px] sm:text-xs text-slate-400 block truncate font-semibold">${cat.requirements.length} Sub-reqs</span>
+              <span class="font-extrabold text-slate-800 group-hover:text-aci-orange transition block truncate text-xs sm:text-sm">${cat.titleEn}</span>
+              <span class="text-[10px] sm:text-xs text-slate-500 block truncate font-semibold">${cat.requirements.length} Sub-reqs</span>
             </div>
           </div>
         `;
@@ -734,12 +734,12 @@
         wheelContainer.classList.remove("hidden");
         cardContainer.classList.add("hidden");
         btnWheel.className = "px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-extrabold transition-all duration-200 flex items-center gap-1.5 bg-aci-navy text-white shadow-md border border-aci-navy";
-        btnCard.className = "px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 flex items-center gap-1.5";
+        btnCard.className = "px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition-all duration-200 flex items-center gap-1.5";
       } else {
         wheelContainer.classList.add("hidden");
         cardContainer.classList.remove("hidden");
         btnCard.className = "px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-extrabold transition-all duration-200 flex items-center gap-1.5 bg-aci-navy text-white shadow-md border border-aci-navy";
-        btnWheel.className = "px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all duration-200 flex items-center gap-1.5";
+        btnWheel.className = "px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition-all duration-200 flex items-center gap-1.5";
       }
     }
 
@@ -755,7 +755,7 @@
       }
 
       document.querySelectorAll(".pill-item").forEach(p => {
-        p.className = "pill-item px-3 py-1 rounded-full text-xs font-bold border border-aci-grey bg-aci-darkBg/80 text-slate-300 hover:text-white hover:border-aci-orange transition-all duration-200 whitespace-nowrap flex items-center gap-1.5";
+        p.className = "pill-item px-3 py-1 rounded-full text-xs font-bold border border-slate-300 bg-white text-slate-700 hover:text-slate-900 hover:border-aci-orange transition-all duration-200 whitespace-nowrap flex items-center gap-1.5 shadow-sm";
       });
 
       const activePill = document.getElementById(`pill-${catId}`);
@@ -813,7 +813,7 @@
       // Central Core Circle
       svgHtml += `
         <g class="cursor-pointer" onclick="resetDetailToDefault()">
-          <circle cx="${center}" cy="${center}" r="${rInner - 4}" fill="#120b07" stroke="#f37025" stroke-width="3" />
+          <circle cx="${center}" cy="${center}" r="${rInner - 4}" fill="#ffffff" stroke="#f37025" stroke-width="3" />
           <circle cx="${center}" cy="${center}" r="${rInner - 12}" fill="#025743" opacity="0.95"/>
           <text x="${center}" y="${center - 12}" text-anchor="middle" fill="#f37025" font-weight="900" font-size="18" letter-spacing="1">FSSC V7</text>
           <text x="${center}" y="${center + 8}" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="12" letter-spacing="0.5">FOOD SAFETY</text>
@@ -843,7 +843,7 @@
           <g class="pie-segment ${isActive ? 'active-segment' : ''}" 
              onclick="selectCategory('${cat.id}')"
              style="opacity: ${isDimmed ? 0.2 : 1};">
-            <path d="${pathD}" fill="${cat.color}" stroke="#120b07" stroke-width="2.5">
+            <path d="${pathD}" fill="${cat.color}" stroke="#ffffff" stroke-width="2.5">
               <title>${cat.titleEn} - ${cat.titleId}</title>
             </path>
         `;
@@ -923,25 +923,25 @@
           const isSelected = currentActiveCatId === cat.id;
 
           const card = document.createElement("div");
-          card.className = `p-4 sm:p-5 rounded-2xl bg-aci-darkBg/90 border transition-all duration-200 cursor-pointer ${isSelected ? 'border-aci-orange ring-2 ring-aci-orange/50 bg-aci-brown' : 'border-aci-grey hover:border-slate-500'}`;
+          card.className = `p-4 sm:p-5 rounded-2xl bg-white border transition-all duration-200 cursor-pointer shadow-sm ${isSelected ? 'border-aci-orange ring-2 ring-aci-orange/30 bg-orange-50/30' : 'border-slate-200 hover:border-slate-400'}`;
           card.onclick = () => selectCategory(cat.id);
 
           card.innerHTML = `
             <div class="flex items-start justify-between gap-3 mb-2 sm:mb-3">
               <div class="flex items-center gap-2.5 sm:gap-3">
-                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center text-white text-xs sm:text-base font-bold shrink-0" style="background-color: ${cat.color}">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center text-white text-xs sm:text-base font-bold shrink-0 shadow-sm" style="background-color: ${cat.color}">
                   <i class="fa-solid ${cat.icon}"></i>
                 </div>
                 <div>
-                  <h3 class="text-sm sm:text-base font-black text-aci-orange">${cat.titleEn}</h3>
-                  <p class="text-xs sm:text-sm text-slate-200 font-bold">${cat.titleId}</p>
+                  <h3 class="text-sm sm:text-base font-black text-slate-900">${cat.titleEn}</h3>
+                  <p class="text-xs sm:text-sm text-slate-600 font-bold">${cat.titleId}</p>
                 </div>
               </div>
-              <span class="text-[10px] sm:text-xs font-extrabold px-2 py-0.5 rounded-lg bg-aci-navy text-white shrink-0">
+              <span class="text-[10px] sm:text-xs font-extrabold px-2 py-0.5 rounded-lg bg-aci-navy text-white shrink-0 shadow-sm">
                 ${cat.requirements.length} Sub-reqs
               </span>
             </div>
-            <p class="text-xs sm:text-sm text-slate-300 line-clamp-2 mt-1 sm:mt-2 leading-relaxed font-medium">${cat.description}</p>
+            <p class="text-xs sm:text-sm text-slate-600 line-clamp-2 mt-1 sm:mt-2 leading-relaxed font-medium">${cat.description}</p>
           `;
 
           grid.appendChild(card);
@@ -950,8 +950,8 @@
 
       if (!hasResults) {
         grid.innerHTML = `
-          <div class="col-span-full py-12 text-center text-slate-400 space-y-2">
-            <i class="fa-solid fa-magnifying-glass text-2xl text-slate-500"></i>
+          <div class="col-span-full py-12 text-center text-slate-500 space-y-2">
+            <i class="fa-solid fa-magnifying-glass text-2xl text-slate-400"></i>
             <p class="text-sm font-medium">Tidak ditemukan aspek yang cocok dengan kata kunci "${searchQuery}".</p>
           </div>
         `;
@@ -994,34 +994,34 @@
         const isOpen = idx === openAccordionIndex;
 
         const accordion = document.createElement("div");
-        accordion.className = `rounded-2xl border transition-all duration-200 overflow-hidden ${isOpen ? 'bg-aci-darkBg border-aci-orange shadow-xl' : 'bg-aci-darkBg/60 border-aci-grey/80 hover:border-slate-500'}`;
+        accordion.className = `rounded-2xl border transition-all duration-200 overflow-hidden shadow-sm ${isOpen ? 'bg-white border-aci-orange shadow-md' : 'bg-slate-50 border-slate-200 hover:border-slate-300'}`;
 
         accordion.innerHTML = `
           <button onclick="toggleAccordion(${idx})" class="w-full p-3.5 sm:p-4 text-left flex items-center justify-between gap-3 focus:outline-none">
             <div class="flex items-center gap-2.5 sm:gap-3 min-w-0">
-              <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-aci-navy border border-aci-orange/40 text-aci-orange font-mono font-black text-xs sm:text-sm flex items-center justify-center shrink-0">
+              <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-aci-navy border border-aci-orange/40 text-aci-orange font-mono font-black text-xs sm:text-sm flex items-center justify-center shrink-0 shadow-sm">
                 ${req.code}
               </span>
-              <span class="text-xs sm:text-base font-extrabold text-slate-100 truncate">${req.title}</span>
+              <span class="text-xs sm:text-base font-extrabold text-slate-800 truncate">${req.title}</span>
             </div>
             <i class="fa-solid ${isOpen ? 'fa-chevron-up text-aci-orange' : 'fa-chevron-down text-slate-400'} text-xs sm:text-sm shrink-0 transition-transform"></i>
           </button>
 
-          <div class="${isOpen ? 'block' : 'hidden'} px-3.5 sm:px-4 pb-4 sm:pb-5 space-y-3 sm:space-y-4 pt-1 sm:pt-2 border-t border-aci-grey/80">
+          <div class="${isOpen ? 'block' : 'hidden'} px-3.5 sm:px-4 pb-4 sm:pb-5 space-y-3 sm:space-y-4 pt-1 sm:pt-2 border-t border-slate-200">
             <div class="space-y-1">
-              <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
+              <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-500 flex items-center gap-1.5">
                 <i class="fa-solid fa-file-lines text-aci-orange"></i> Deskripsi Baku Standard FSSC V7 / ISO[cite: 1]
               </span>
-              <p class="text-xs sm:text-base text-slate-200 leading-relaxed pl-3 border-l-2 border-aci-orange/70 font-medium">
+              <p class="text-xs sm:text-base text-slate-700 leading-relaxed pl-3 border-l-2 border-aci-orange/70 font-medium">
                 ${req.description}
               </p>
             </div>
 
-            <div class="p-3 sm:p-4 rounded-xl bg-aci-navy/30 border border-aci-orange/40 text-slate-100 space-y-1 shadow-sm">
-              <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-aci-orange flex items-center gap-1.5">
+            <div class="p-3 sm:p-4 rounded-xl bg-emerald-50/50 border border-emerald-200 text-slate-800 space-y-1 shadow-sm">
+              <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-emerald-700 flex items-center gap-1.5">
                 <i class="fa-solid fa-mug-hot text-aci-orange"></i> Contoh Implikasi Nyata PT Aneka Coffee Industry
               </span>
-              <p class="text-xs sm:text-sm text-slate-100 leading-relaxed font-normal">
+              <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
                 ${req.implication}
               </p>
             </div>
