@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>PRP Interactive Circular Diagram - PT Aneka Coffee Industry</title>
+  <title>PRP & FSSC V7 Interactive Circular Diagram - PT Aneka Coffee Industry</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -16,11 +16,11 @@
           },
           colors: {
             aci: {
-              navy: '#025743',    /* Primary Brand Navy Green[cite: 6] */
-              brown: '#2a1a11',   /* Secondary Brand Dark Brown[cite: 6] */
+              navy: '#025743',    /* Primary Brand Navy Green */
+              brown: '#2a1a11',   /* Secondary Brand Dark Brown */
               darkBg: '#120b07',  /* Deep Dark Background */
-              orange: '#f37025',  /* Accent Orange[cite: 6] */
-              grey: '#414042',    /* Accent Neutral Grey[cite: 6] */
+              orange: '#f37025',  /* Accent Orange */
+              grey: '#414042',    /* Accent Neutral Grey */
               cardBg: '#1d120c'
             }
           }
@@ -81,7 +81,7 @@
       </div>
       <div>
         <h1 class="text-sm sm:text-xl font-black tracking-tight text-white flex flex-wrap items-center gap-2">
-          Pre-Requisite Program (PRP) <span class="text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full bg-aci-orange/20 text-aci-orange border border-aci-orange/50">ISO 22000 / ISO 22002-1[cite: 1]</span>
+          PRP &amp; FSSC V7 Diagram <span class="text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded-full bg-aci-orange/20 text-aci-orange border border-aci-orange/50">ISO 22000 / FSSC V7[cite: 1]</span>
         </h1>
         <p class="text-[11px] sm:text-sm text-slate-300 font-semibold">PT Aneka Coffee Industry &bull; Interactive Food Safety Wheel Guidance</p>
       </div>
@@ -104,7 +104,7 @@
     </div>
   </header>
 
-  <!-- Main Workspace Layout (Mobile Scrollable, Desktop Screen-height Fixed) -->
+  <!-- Main Workspace Layout -->
   <main class="flex-1 flex flex-col lg:flex-row overflow-y-auto lg:overflow-hidden relative">
     
     <!-- LEFT PANEL: Visual Large Diagram / List View -->
@@ -114,7 +114,7 @@
       <div class="p-3 sm:p-4 border-b border-aci-grey/60 bg-aci-brown/40 flex flex-col sm:flex-row gap-3 items-center justify-between shrink-0">
         <div class="relative w-full sm:w-96">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs sm:text-sm"></i>
-          <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Cari kata kunci (CIP, Hama, Alergen, Kopi, dsb)..." 
+          <input type="text" id="search-input" onkeyup="handleSearch()" placeholder="Cari kata kunci (FSSC V7, EMP, Alergen, Kopi, dsb)..." 
                  class="w-full bg-aci-cardBg/90 text-xs sm:text-sm text-slate-100 placeholder-slate-400 pl-10 pr-9 py-2 sm:py-2.5 rounded-xl border border-aci-grey/80 focus:outline-none focus:border-aci-orange focus:ring-2 focus:ring-aci-orange/30 transition-all font-medium">
           <button id="clear-search" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs">
             <i class="fa-solid fa-xmark"></i>
@@ -122,9 +122,9 @@
         </div>
 
         <div class="w-full sm:w-auto flex items-center gap-2">
-          <label class="text-xs sm:text-sm font-bold text-slate-300 whitespace-nowrap hidden md:inline"><i class="fa-solid fa-filter mr-1.5 text-aci-orange"></i>Filter PRP:</label>
+          <label class="text-xs sm:text-sm font-bold text-slate-300 whitespace-nowrap hidden md:inline"><i class="fa-solid fa-filter mr-1.5 text-aci-orange"></i>Filter Aspek:</label>
           <select id="category-filter" onchange="handleFilterChange()" class="w-full sm:w-72 bg-aci-cardBg/90 text-xs sm:text-sm text-slate-100 font-semibold border border-aci-grey rounded-xl px-3 py-2 sm:py-2.5 focus:outline-none focus:border-aci-orange transition-all">
-            <option value="ALL">Semua 14 Aspek PRP Utama</option>
+            <option value="ALL">Semua 15 Aspek (PRP + FSSC V7)</option>
           </select>
         </div>
       </div>
@@ -187,14 +187,14 @@
             <div>
               <h3 class="font-black text-slate-100 text-base sm:text-lg">Petunjuk Navigasi Diagram</h3>
               <p class="text-xs sm:text-sm text-slate-300 mt-1.5 leading-relaxed font-medium">
-                Diagram sirkular menampilkan **14 Aspek Utama PRP** dalam istilah Bahasa Inggris ringkas. Sentuh/klik sektor manapun untuk menampilkan rincian Sub-Requirement dan contoh implikasi pabrik kopi di panel ini.
+                Diagram sirkular menampilkan **14 Aspek PRP Utama + 1 Pilar FSSC V7 Additional Requirements**. Sentuh/klik sektor manapun untuk menampilkan rincian Sub-Requirement dan implikasi nyatanya di PT Aneka Coffee Industry.
               </p>
             </div>
           </div>
 
           <div class="space-y-2.5">
             <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 flex items-center gap-2">
-              <i class="fa-solid fa-list-check text-aci-orange text-sm"></i> Ringkasan 14 Aspek PRP
+              <i class="fa-solid fa-list-check text-aci-orange text-sm"></i> Ringkasan Aspek (Termasuk FSSC V7)
             </h4>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm" id="default-aspects-list"></div>
           </div>
@@ -225,7 +225,7 @@
       <div class="p-3 sm:p-4 border-t border-aci-grey/80 bg-aci-brown flex items-center justify-between text-xs sm:text-sm text-slate-300 shrink-0">
         <span class="font-extrabold text-white">PT Aneka Coffee Industry</span>
         <span class="flex items-center gap-1.5 font-bold text-emerald-400 text-xs sm:text-sm">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Standard FSMS 2025/2026[cite: 1]
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> FSSC V7 (Mei 2026)[cite: 1]
         </span>
       </div>
 
@@ -311,7 +311,7 @@
           {
             code: "3.1",
             title: "Kualitas Air, Es, & Uap",
-            description: "Standar mikrobiologi dan kimiawi untuk air/es/uap yang kontak langsung dengan produk (culinary steam) atau area kontak produk. Pemantauan kadar sisa klorin (residual chlorine) pada titik penggunaan jika air diklorinasi.",
+            description: "Standar mikrobiologi dan kimiawi untuk air/es/uap yang kontak langsung dengan produk (culinary steam) atau area kontak produk. Pemantauan kadar sisa klorin (residual chlorine) pada titik penggunaan.",
             implication: "Air ekstraksi kopi cair dan Uap Culinary (uap kontak langsung proses ekstraksi kopi) wajib diuji tes mikrobiologi rutin dan pemantauan klorin bebas 0.2 - 0.5 ppm pada titik keran."
           },
           {
@@ -347,7 +347,7 @@
             code: "4.2",
             title: "Udara Bertekanan & Gas Kompresor",
             description: "Spesifikasi kualitas fisik, kimia, dan mikrobiologi udara bertekanan yang kontak langsung dengan produk/kemasan. Penggunaan pelumas food grade untuk kompresor udara.",
-            implication: "Penggunaan oli pelumas Food Grade (NSF H1) pada kompresor udara pneumatic yang bertugas membilas/meniup kantong kemasan kopi kemasan saset."
+            implication: "Penggunaan oli pelumas Food Grade (NSF H1) pada kompresor udara pneumatic yang bertugas membilas/meniup kantong kemasan kopi saset."
           }
         ]
       },
@@ -421,7 +421,7 @@
           {
             code: "7.2",
             title: "Pemeliharaan Preventif & Korektif",
-            description: "Jadwal maintenance, prioritas perbaikan yang berdampak pada keamanan pangan. Penggunaan pelumas/oli mesin berstandar food grade untuk area kontak produk. Prosedur serah terima/Pembersihan setelah maintenance sebelum mesin digunakan kembali.",
+            description: "Jadwal maintenance, prioritas perbaikan yang berdampak pada keamanan pangan. Penggunaan pelumas food grade untuk area kontak produk. Prosedur pembersihan setelah maintenance.",
             implication: "Penggunaan grease NSF H1 pada rantai conveyor pembawa biji sangrai. Setelah perbaikan mesin grinder, dilakukan sanitasi ulang dan verifikasi sign-off QC sebelum running kembali."
           }
         ]
@@ -466,9 +466,9 @@
         requirements: [
           {
             code: "9.1",
-            title: "Tata Kelola Gudang",
-            description: "Penyimpanan tidak langsung di atas lantai (pakai palet) dan diberi jarak dari dinding. Penerapan rotated stock FIFO (First-In, First-Out) atau FEFO (First-Expired, First-Out). Pemisahan terpisah untuk bahan kimia non-pangan dan area karantina produk tidak sesuai.",
-            implication: "Tumpukan karung kopi diberi jarak minimal 50 cm dari dinding gudang untuk inspeksi hama dan wajib beralaskan palet. Pengeluaran bahan baku kopi menggunakan label FIFO/FEFO."
+            title: "Tata Kelola Gudang & FEFO",
+            description: "Penyimpanan tidak langsung di atas lantai (pakai palet) dan diberi jarak dari dinding. Penerapan rotated stock FIFO atau FEFO (First-Expired, First-Out).",
+            implication: "Tumpukan karung kopi diberi jarak minimal 50 cm dari dinding gudang untuk inspeksi hama dan wajib beralaskan palet. Pengeluaran bahan baku kopi menggunakan label FIFO/FEFO[cite: 30]."
           },
           {
             code: "9.2",
@@ -496,20 +496,20 @@
           {
             code: "10.2",
             title: "Pengendalian Alergen",
-            description: "Penanganan kontaminasi silang alergen (cross-contact) pada pembersihan lini/pergantian produk (change-over) dan kontrol penggunaan rework bermateri alergen. Pelabelan alergen pada kemasan.",
-            implication: "Jika pabrik memproduksi varian 3-in-1 yang mengandung susu/krimer (alergen), lini produksi dipisah atau dilakukan pembersihan total yang tervalidasi alergen swab kit sebelum memproduksi kopi murni."
+            description: "Penanganan kontaminasi silang alergen pada pergantian produk (change-over) dan kontrol rework bermateri alergen. Pelabelan alergen[cite: 28].",
+            implication: "Jika pabrik memproduksi varian 3-in-1 yang mengandung susu/krimer (alergen), lini produksi dipisah atau dilakukan pembersihan total tervalidasi alergen swab kit sebelum memproduksi kopi murni."
           },
           {
             code: "10.3",
-            title: "Kontaminasi Fisik & Bahan Pecah",
-            description: "Penggunaan saringan (sieves), magnet (magnet traps), atau detektor logam (metal detectors/X-Ray). Pengendalian bahan rapuh/pecah (glass & brittle plastic policy) dan prosedur jika terjadi pecah kaca/plastik.",
-            implication: "Pemasangan Magnet Trap pada pipa penyaluran kopi bubuk untuk menangkap gram besi, diikuti Metal Detector (Fe, Non-Fe, SS) sebelum karton dikemas. Penerapan kaca film anti-pecah pada jendela pabrik."
+            title: "Kontaminasi Fisik & Benda Asing",
+            description: "Penggunaan saringan, magnet traps, atau detektor logam/X-ray. Pengendalian bahan rapuh/pecah (glass & brittle plastic policy)[cite: 30].",
+            implication: "Pemasangan Magnet Trap pada pipa penyaluran kopi bubuk untuk menangkap gram besi, diikuti Metal Detector (Fe, Non-Fe, SS) sebelum karton dikemas."
           },
           {
             code: "10.4",
             title: "Kontaminasi Kimiawi",
             description: "Pelabelan, penggunaan oleh personel kompeten, dan penyimpanan terpisah untuk pestisida serta bahan pembersih.",
-            implication: "Bahan pembersih asam/basa (CIP chemical) diberi label bahaya yang jelas, terkunci di ruang B3, dan hanya diukur oleh petugas yang terlatih memakai APD lengkap."
+            implication: "Bahan pembersih asam/basa (CIP chemical) diberi label bahaya yang jelas, terkunci di ruang B3, dan hanya diukur oleh petugas terlatih memakai APD lengkap."
           }
         ]
       },
@@ -525,7 +525,7 @@
           {
             code: "11.1",
             title: "Pembersihan & Disinfeksi",
-            description: "Jadwal pembersihan, metode verifikasi, dan kebersihan alat pembersih. Pemeriksaan pasca-pembersihan (post-clean inspection) dan pra-start mesin (pre-start-up inspection).",
+            description: "Jadwal pembersihan, metode verifikasi, dan kebersihan alat pembersih. Pemeriksaan pasca-pembersihan (post-clean inspection).",
             implication: "Master Cleaning Schedule untuk mesin pengering kopi (spray dryer); verifikasi kebersihan menggunakan tes swab ATP sebelum dilanjutkan proses penggilingan batch berikutnya."
           },
           {
@@ -549,7 +549,7 @@
             code: "12.1",
             title: "Fasilitas Kebersihan & Toilet",
             description: "Ketersediaan wastafel cuci tangan memadai, air hangat/sabun/disinfektan, dan toilet terpisah dari jalur produksi.",
-            implication: "Fasilitas cuci tangan dengan sensor otomatis (non-hand operated), sabun cair tanpa bau (unscented soap), pengering tangan angin/tisu steril, dan toilet tidak membuka langsung ke area proses."
+            implication: "Fasilitas cuci tangan dengan sensor otomatis (non-hand operated), sabun cair tanpa bau, pengering tangan steril, dan toilet tidak membuka langsung ke area proses."
           },
           {
             code: "12.2",
@@ -561,7 +561,7 @@
             code: "12.3",
             title: "Status Kesehatan & Perilaku",
             description: "Kewajiban melaporkan penyakit menular/gejala pencernaan, penanganan luka terbuka, dan aturan dilarang memakai perhiasan.",
-            implication: "Pekerja yang mengalami luka kecil di tangan wajib melapor, menutup luka dengan plester berwarna terang (berdeteksi logam / blue metal detectable plaster), dan memakai sarung tangan berlapis."
+            implication: "Pekerja yang mengalami luka kecil di tangan wajib melapor, menutup luka dengan plester berdeteksi logam (blue metal detectable plaster), dan memakai sarung tangan berlapis."
           }
         ]
       },
@@ -576,15 +576,15 @@
         requirements: [
           {
             code: "13.1",
-            title: "Food Defense Assessment",
-            description: "Penilaian ancaman (threat assessment), kontrol pintu masuk, pembatasan akses tamu, dan penguncian tangki/ruang penyimpanan.",
-            implication: "Pemasangan kamera CCTV 24/7 di area kritikal seperti Silo Kopi Curah dan Tangki Ekstraksi, serta penggunaan kartu akses elektronik (access card) untuk masuk ke area pemrosesan utama."
+            title: "Food Defense Threat Assessment",
+            description: "Penilaian ancaman, kontrol pintu masuk, pembatasan akses tamu, dan penguncian tangki/ruang penyimpanan[cite: 27].",
+            implication: "Pemasangan kamera CCTV 24/7 di area kritikal seperti Silo Kopi Curah dan Tangki Ekstraksi, serta penggunaan kartu akses elektronik untuk masuk ke area pemrosesan utama."
           },
           {
             code: "13.2",
-            title: "Food Fraud Vulnerability",
-            description: "Penilaian kerentanan (vulnerability assessment), verifikasi keaslian spesifikasi bahan baku, dan pengawasan jalur rantai pasok.",
-            implication: "Pengujian spektroskopi/laboratorium berkala untuk memverifikasi keaslian varietas Kopi Arabika dari risiko pencampuran tersembunyi dengan Kopi Robusta murah atau bahan pengisi non-kopi."
+            title: "Food Fraud Vulnerability Assessment",
+            description: "Penilaian kerentanan pemalsuan bahan baku, verifikasi keaslian spesifikasi bahan baku, dan pengawasan rantai pasok[cite: 27].",
+            implication: "Pengujian laboratorium berkala untuk memverifikasi keaslian varietas Kopi Arabika dari risiko pencampuran tersembunyi dengan Kopi Robusta murah atau bahan pengisi."
           }
         ]
       },
@@ -606,8 +606,61 @@
           {
             code: "14.2",
             title: "Aturan Penggunaan Rework",
-            description: "Penentuan batasan persentase penambahan rework ke dalam batch baru dan prosedur pelepasan kemasan dari produk rework tanpa mengontaminasi.",
-            implication: "Prosedur SOP menetapkan maksimal 5% bubuk kopi rework yang boleh dimasukkan kembali ke dalam formula batch baru kopi instan, dengan verifikasi kelayakan organoleptik oleh QC."
+            description: "Penentuan batasan persentase penambahan rework ke dalam batch baru dan prosedur pelepasan kemasan.",
+            implication: "Prosedur SOP menetapkan maksimal 5% bubuk kopi rework yang boleh dimasukkan kembali ke dalam formula batch baru kopi instan, dengan verifikasi kelayakan oleh QC."
+          }
+        ]
+      },
+      {
+        id: "cat-15",
+        code: "FSSC-V7",
+        titleEn: "FSSC V7 Additional Req.",
+        titleId: "Persyaratan Tambahan FSSC V7 (Clause 2.5)",
+        color: "#b45309",
+        icon: "fa-certificate",
+        description: "Persyaratan wajib tambahan skema FSSC 22000 Version 7 (Mei 2026) mencakup EMP, Quality Control, Food Safety Culture, hingga Food Loss & Waste.",
+        requirements: [
+          {
+            code: "2.5.1",
+            title: "Management of Services & Purchased Materials",
+            description: "Pengujian laboratorium kritis wajib terakreditasi ISO/IEC 17025 / uji profisiensi, prosedur pengadaan darurat, dan tinjauan berkala spesifikasi[cite: 26].",
+            implication: "Pengujian parameter mikrobiologi eksternal kopi di PT Aneka Coffee Industry wajib menggunakan laboratorium terakreditasi ISO 17025 dengan prosedur darurat supplier terverifikasi."
+          },
+          {
+            code: "2.5.6",
+            title: "Management of Allergens",
+            description: "Rencana manajemen alergen terdokumentasi, penilaian risiko kontaminasi silang, validasi & verifikasi pembersihan (surface/air testing), serta review tahunan[cite: 28].",
+            implication: "Penerapan pengujian swab permukaan rutin pada lini produksi yang bersentuhan dengan produk mengandung krimer/susu untuk memastikan bebas residu alergen."
+          },
+          {
+            code: "2.5.7",
+            title: "Environmental Monitoring Program (EMP)",
+            description: "Program pemantauan lingkungan berbasis risiko untuk patogen, organisme pembusuk, indikator mikrobiologi, dan analisis tren (trend analysis)[cite: 28, 29].",
+            implication: "Pengambilan sampel swab dinding, lantai, dan saluran air di ruang pengemasan sekunder kopi secara berkala untuk memonitor keberadaan mikroorganisme pembusuk."
+          },
+          {
+            code: "2.5.8",
+            title: "Food Safety & Quality Culture",
+            description: "Komitmen manajemen puncak dalam membangun budaya keamanan pangan & mutu (komunikasi, pelatihan, employee feedback, dan pengukuran kinerja)[cite: 29].",
+            implication: "Penyusunan target dan program kerja tahunan Food Safety & Quality Culture yang melibatkan seluruh operator lini produksi roaster dan packing."
+          },
+          {
+            code: "2.5.9",
+            title: "Quality Control Requirements",
+            description: "Kebijakan mutu, parameter mutu produk akhir sesuai spesifikasi, kontrol kuantitas/kalibrasi alat ukur, serta prosedur line start-up dan change-over[cite: 29].",
+            implication: "Pengecekan parameter fisik kemasan, berat netto saset kopi, serta pembersihan sisa label/kemasan lama saat line start-up dan pergantian shift produksi."
+          },
+          {
+            code: "2.5.16",
+            title: "Food Loss and Waste Strategy",
+            description: "Kebijakan dan sasaran terukur untuk pengurangan limbah pangan (food loss/waste), kontrol produk donasi, serta pengelolaan produk sampingan pakan[cite: 32].",
+            implication: "Pencatatan dan penetapan target penurunan sisa bahan baku kopi terbuang (*food loss*) selama proses roasting dan ekstraksi secara berkala."
+          },
+          {
+            code: "2.5.17",
+            title: "Communication Requirements (3 Working Days)",
+            description: "Kewajiban menginformasikan Certification Body (CB) dalam waktu maksimal 3 hari kerja terkait force majeure, public recall, penarikan, atau tindakan regulasi hukum[cite: 32].",
+            implication: "Setiap insiden serius yang mengancam integritas sertifikasi atau penarikan produk kopi wajib dilaporkan oleh tim manajemen ke pihak Badan Sertifikasi dalam 3 hari kerja."
           }
         ]
       }
@@ -640,7 +693,7 @@
     function initCategoryPills() {
       const container = document.getElementById("category-pills");
       let html = `<button onclick="setCategoryFilter('ALL')" id="pill-ALL" class="pill-item px-3 py-1 rounded-full text-xs font-black border transition-all duration-200 bg-aci-orange text-white border-aci-orange shadow-md">
-                    Semua Aspek
+                    Semua Aspek (15)
                   </button>`;
       
       prpData.forEach(cat => {
@@ -762,9 +815,9 @@
         <g class="cursor-pointer" onclick="resetDetailToDefault()">
           <circle cx="${center}" cy="${center}" r="${rInner - 4}" fill="#120b07" stroke="#f37025" stroke-width="3" />
           <circle cx="${center}" cy="${center}" r="${rInner - 12}" fill="#025743" opacity="0.95"/>
-          <text x="${center}" y="${center - 12}" text-anchor="middle" fill="#f37025" font-weight="900" font-size="20" letter-spacing="1">PRP</text>
-          <text x="${center}" y="${center + 8}" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="13" letter-spacing="0.5">FOOD SAFETY</text>
-          <text x="${center}" y="${center + 26}" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="700">ISO 22000 / 22002-1[cite: 1]</text>
+          <text x="${center}" y="${center - 12}" text-anchor="middle" fill="#f37025" font-weight="900" font-size="18" letter-spacing="1">FSSC V7</text>
+          <text x="${center}" y="${center + 8}" text-anchor="middle" fill="#ffffff" font-weight="800" font-size="12" letter-spacing="0.5">FOOD SAFETY</text>
+          <text x="${center}" y="${center + 26}" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="700">ISO 22000 / FSSC V7[cite: 1]</text>
         </g>
       `;
 
@@ -809,7 +862,7 @@
         svgHtml += `
             <text x="${labelX}" y="${labelY}" 
                   fill="#ffffff" 
-                  font-size="18" 
+                  font-size="15" 
                   font-weight="900" 
                   letter-spacing="0.3"
                   text-anchor="middle" 
@@ -899,7 +952,7 @@
         grid.innerHTML = `
           <div class="col-span-full py-12 text-center text-slate-400 space-y-2">
             <i class="fa-solid fa-magnifying-glass text-2xl text-slate-500"></i>
-            <p class="text-sm font-medium">Tidak ditemukan aspek PRP yang cocok dengan kata kunci "${searchQuery}".</p>
+            <p class="text-sm font-medium">Tidak ditemukan aspek yang cocok dengan kata kunci "${searchQuery}".</p>
           </div>
         `;
       }
@@ -927,7 +980,6 @@
 
       renderSubrequirementsAccordion(cat.requirements);
 
-      // Smooth auto-scroll to detail panel on mobile view
       if (window.innerWidth < 1024) {
         const detailPanel = document.getElementById("detail-panel");
         detailPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -958,7 +1010,7 @@
           <div class="${isOpen ? 'block' : 'hidden'} px-3.5 sm:px-4 pb-4 sm:pb-5 space-y-3 sm:space-y-4 pt-1 sm:pt-2 border-t border-aci-grey/80">
             <div class="space-y-1">
               <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-slate-400 flex items-center gap-1.5">
-                <i class="fa-solid fa-file-lines text-aci-orange"></i> Deskripsi Baku Standard ISO[cite: 1]
+                <i class="fa-solid fa-file-lines text-aci-orange"></i> Deskripsi Baku Standard FSSC V7 / ISO[cite: 1]
               </span>
               <p class="text-xs sm:text-base text-slate-200 leading-relaxed pl-3 border-l-2 border-aci-orange/70 font-medium">
                 ${req.description}
@@ -967,7 +1019,7 @@
 
             <div class="p-3 sm:p-4 rounded-xl bg-aci-navy/30 border border-aci-orange/40 text-slate-100 space-y-1 shadow-sm">
               <span class="text-[10px] sm:text-xs font-black uppercase tracking-wider text-aci-orange flex items-center gap-1.5">
-                <i class="fa-solid fa-mug-hot text-aci-orange"></i> Contoh Implikasi Nyata Pabrik Kopi
+                <i class="fa-solid fa-mug-hot text-aci-orange"></i> Contoh Implikasi Nyata PT Aneka Coffee Industry
               </span>
               <p class="text-xs sm:text-sm text-slate-100 leading-relaxed font-normal">
                 ${req.implication}
@@ -1000,9 +1052,9 @@
       document.getElementById("detail-default-msg").classList.remove("hidden");
       document.getElementById("detail-selected-content").classList.add("hidden");
 
-      document.getElementById("detail-category-badge").textContent = "PRP ELEMENT";
-      document.getElementById("detail-code-badge").textContent = "ISO 22002-1[cite: 1]";
-      document.getElementById("detail-title-en").textContent = "PRP - Food Safety System";
+      document.getElementById("detail-category-badge").textContent = "FSSC V7 ELEMENT";
+      document.getElementById("detail-code-badge").textContent = "ISO 22000 / FSSC V7[cite: 1]";
+      document.getElementById("detail-title-en").textContent = "PRP & FSSC V7 Food Safety System";
       document.getElementById("detail-title-id").textContent = "Pilih sektor pada diagram untuk melihat detail";
     }
   </script>
